@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Box, Typography } from '@mui/material';
 import { VerifiedUser } from '@mui/icons-material';
 import Image from 'next/image';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import { setLoading } from '../../store/loadingSlice';
 
 const SplashScreen = () => {

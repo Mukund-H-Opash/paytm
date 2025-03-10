@@ -6,12 +6,10 @@ import AssuredWorkloadIcon from '@mui/icons-material/AssuredWorkload';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
-import ReplayIcon from '@mui/icons-material/Replay';
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import LocalAtmIcon from "@mui/icons-material/LocalAtm";
+
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import FlightIcon from "@mui/icons-material/Flight";
@@ -19,7 +17,7 @@ import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import SearchIcon from "@mui/icons-material/Search"; // Import SearchIcon for the search button
-import { useAppDispatch, useAppSelector } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 import { incrementAttempt, setUpiId } from "../../store/upiSlice";
 
 export default function HomePage() {
@@ -44,7 +42,7 @@ export default function HomePage() {
   {/* Header Section */}
   <Box
     sx={{
-      backgroundColor: "#022A72", // Updated background color
+      backgroundColor: "#022A72",
       padding: { xs: 1, sm: 2 },
       borderRadius: 1,
       mb: 2,
@@ -60,7 +58,7 @@ export default function HomePage() {
         sx={{
           width: { xs: 25, sm: 30 },
           height: { xs: 25, sm: 30 },
-          backgroundColor: "#EB5757", // Updated red color
+          backgroundColor: "#EB5757", 
           borderRadius: "50%",
           color: "white",
           display: "flex",
@@ -76,7 +74,7 @@ export default function HomePage() {
         variant="contained"
         sx={{
           background: "linear-gradient(90deg, #f3f3f3, #f3f3f3)", 
-          border: `2px solid #9DAE6C`, // Added second border color
+          border: `2px solid #9DAE6C`, 
           color: "#007bff",
           fontSize: { xs: "0.8rem", sm: "1rem" },
 
@@ -91,8 +89,8 @@ export default function HomePage() {
     </Box>
     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
       
-      <SearchIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} /> {/* Replaced QrCode2Icon with SearchIcon to match image */}
-      <NotificationsIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} /> {/* Replaced with a bell-like icon if available, using PaymentIcon as placeholder */}
+      <SearchIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} /> 
+      <NotificationsIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} /> 
     </Box>
   </Box>
 
@@ -789,83 +787,193 @@ export default function HomePage() {
         FREE TOOLS
       </Typography>
       <Grid container spacing={1} sx={{ mb: 2 }}>
-        <Grid item xs={6} sm={3}>
+        {/* Credit Score Button */}
+        <Grid item xs={3}>
           <Button
             fullWidth
-            startIcon={<ShowChartIcon />}
-             
-            sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: { xs: "0.75rem", sm: "0.875rem" },
+              color: "#022A72",
+              "&:hover": {
+                backgroundColor: "rgba(2, 42, 114, 0.1)",
+              },
+              padding: 0, // Removed padding around button to fit content perfectly
+            }}
           >
+            <Box
+              sx={{
+                // backgroundColor: "#022A72",
+                color: "#022A72",
+                borderRadius: "10%",
+                p: 1,
+                mb: 1, // Space between icon and text
+              }}
+            >
+              <ShowChartIcon />
+            </Box>
             Credit Score
           </Button>
         </Grid>
-        <Grid item xs={6} sm={3}>
+
+        {/* Mutual Fund Button */}
+        <Grid item xs={3}>
           <Button
             fullWidth
-            startIcon={<ShowChartIcon />}
-             
-            sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: { xs: "0.75rem", sm: "0.875rem" },
+              color: "#022A72",
+              "&:hover": {
+                backgroundColor: "rgba(2, 42, 114, 0.1)",
+              },
+              padding: 0,
+            }}
           >
+            <Box
+              sx={{
+                // backgroundColor: "#022A72",
+                color: "#022A72",
+                borderRadius: "10%",
+                p: 1,
+                mb: 1,
+              }}
+            >
+              <ShowChartIcon />
+            </Box>
             Mutual Fund
           </Button>
         </Grid>
-        <Grid item xs={6} sm={3}>
+
+        {/* Ask AI Button */}
+        <Grid item xs={3}>
           <Button
             fullWidth
-            startIcon={<PaymentIcon />}
-             
-            sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: { xs: "0.75rem", sm: "0.875rem" },
+              color: "#022A72",
+              "&:hover": {
+                backgroundColor: "rgba(2, 42, 114, 0.1)",
+              },
+              padding: 0,
+            }}
           >
+            <Box
+              sx={{
+                // backgroundColor: "#022A72",
+                color: "#022A72",
+                borderRadius: "10%",
+                p: 1,
+                mb: 1,
+              }}
+            >
+              <PaymentIcon />
+            </Box>
             Ask AI
           </Button>
         </Grid>
-        <Grid item xs={6} sm={3}>
+
+        {/* Insurance Button */}
+        <Grid item xs={3}>
           <Button
             fullWidth
-            startIcon={<AccountBalanceWalletIcon />}
-             
-            sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: { xs: "0.75rem", sm: "0.875rem" },
+              color: "#022A72",
+              "&:hover": {
+                backgroundColor: "rgba(2, 42, 114, 0.1)",
+              },
+              padding: 0,
+            }}
           >
+            <Box
+              sx={{
+                // backgroundColor: "#022A72",
+                color: "#022A72",
+                borderRadius: "10%",
+                p: 1,
+                mb: 1,
+              }}
+            >
+              <AccountBalanceWalletIcon />
+            </Box>
             Insurance
           </Button>
         </Grid>
       </Grid>
 
+      
+
       {/* Cashback & Ad */}
-      <Box
-        sx={{
-          mb: 2,
-          backgroundColor: "#e0f7fa",
-          p: 2,
-          borderRadius: 1,
-          textAlign: "center",
-        }}
-      >
-        <Typography sx={{ fontSize: { xs: "0.9rem", sm: "1rem" } }}>
-          Cashback & Offers
-        </Typography>
-        <Button
-           
-          sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
-        >
-          Points & Gift Cards
-        </Button>
-      </Box>
+      <Grid container spacing={1} 
+      sx={{ mb: 2
+            ,backgroundColor: "#f2f6f9",p: 1, 
+            
+       }}>
+        <Grid item xs={6}
+        sx={{ backgroundColor: "#ffffff",borderRadius: 2 }}>
+          <Button
+            fullWidth
+            startIcon={<AccountBalanceWalletIcon />}
+            
+            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}
+          >
+            cashback & Offers 
+          </Button>
+        </Grid>
+        <Grid item xs={6}
+        sx={{ backgroundColor: "#ffffff",borderRadius: 2, }}>
+          <Button
+            fullWidth
+            startIcon={<SystemUpdateAltIcon/>}
+            
+            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}
+          >
+            Points & gift Cards 
+          </Button>
+        </Grid>
+      </Grid>
 
       <Box
         sx={{
           mb: 2,
-          backgroundColor: "#00c853",
+          backgroundColor: "#022A72", 
           p: 2,
-          borderRadius: 1,
+          borderRadius: "2rem", 
+          width: "auto", 
+          maxWidth: "150px",
           textAlign: "center",
           color: "white",
+          margin: "0 auto", 
         }}
-      >
-        <Typography sx={{ fontSize: { xs: "0.9rem", sm: "1rem" } }}>
-          Ad Placeholder (Scan Any QR)
+        >
+        <Typography
+          sx={{
+            fontSize: { xs: "0.9rem", sm: "1rem" },
+            display: "flex", 
+            alignItems: "center", 
+            justifyContent: "center",
+          }}
+        >
+          <QrCodeScannerIcon sx={{ marginRight: 1 }} /> 
+          Scan Any QR
         </Typography>
       </Box>
+
     </Box>
   );
 }
