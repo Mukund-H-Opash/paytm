@@ -17,7 +17,7 @@ const SplashScreen = () => {
     const timer = setTimeout(() => {
       dispatch(setLoading(false)); // Update Redux state
       router.push('/home'); // Redirect to homepage
-    }, 99000); // 5.5 seconds
+    }, 3000); // 5.5 seconds
 
     return () => clearTimeout(timer); // Cleanup
   }, [dispatch, router]);

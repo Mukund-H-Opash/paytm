@@ -9,26 +9,24 @@ import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
-
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import FlightIcon from "@mui/icons-material/Flight";
 import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import SearchIcon from "@mui/icons-material/Search"; // Import SearchIcon for the search button
-import { useAppDispatch, useAppSelector } from "../../store/store";
-import { incrementAttempt, setUpiId } from "../../store/upiSlice";
+import SearchIcon from "@mui/icons-material/Search"; 
+import { useRouter } from "next/navigation";
+
 
 export default function HomePage() {
-  const dispatch = useAppDispatch();
-  const { attemptCount, upiId } = useAppSelector((state) => state.upi);
+  const router = useRouter();
 
-  const handleCreateUpiId = () => {
-    dispatch(incrementAttempt());
-    const newUpiId = `987${Math.floor(Math.random() * 1000000)}@paytm`;
-    dispatch(setUpiId(newUpiId));
-  };
+
+const handleClick = () => {
+  router.push('/search');
+};
+
 
   return (
     <Box
@@ -89,7 +87,7 @@ export default function HomePage() {
     </Box>
     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
       
-      <SearchIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} /> 
+      <SearchIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}onClick={handleClick} />
       <NotificationsIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} /> 
     </Box>
   </Box>
