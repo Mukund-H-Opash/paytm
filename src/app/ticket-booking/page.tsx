@@ -85,7 +85,7 @@ export default function TicketBookingPage() {
     // Calculate dynamic price based on selected stops (example logic)
     if (selectedFrom && selectedTo) {
       const distanceFactor = Math.abs(selectedFrom.length - selectedTo.length) + 10;
-      setTicketPrice(12 + distanceFactor); // Dynamic price calculation
+      setTicketPrice(1 + distanceFactor); // Dynamic price calculation
     }
   }, []);
 
@@ -103,11 +103,13 @@ export default function TicketBookingPage() {
     const updatedOrders = [newOrder, ...recentOrders].slice(0, 3);
     setRecentOrders(updatedOrders);
 
-    // Clear form
-    setFrom("");
-    setTo("");
-    setPassengers(1);
-    setTicketPrice(12); // Reset price
+    const paymentParams = new URLSearchParams({
+      from: newOrder.from,
+      to: newOrder.to,
+      price: newOrder.price.toString(),
+      passengers: newOrder.passengers.toString(),
+    });
+    router.push(`/payment?${paymentParams.toString()}`);
   };
 
   return (

@@ -1,116 +1,108 @@
 "use client";
 
-import { Box, Typography, Button, Grid, TextField, InputAdornment } from "@mui/material";
+import { Box, Typography, Button, Grid } from "@mui/material";
+import { useRouter } from "next/navigation";
+// Keep the MUI icons we still need
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import PaymentIcon from "@mui/icons-material/Payment";
-import AssuredWorkloadIcon from '@mui/icons-material/AssuredWorkload';
-import ContactsIcon from '@mui/icons-material/Contacts';
-import SystemUpdateAltIcon from '@mui/icons-material/SystemUpdateAlt';
-import HomeWorkIcon from '@mui/icons-material/HomeWork';
-import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import FlightIcon from "@mui/icons-material/Flight";
 import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import SearchIcon from "@mui/icons-material/Search"; 
-import { useRouter } from "next/navigation";
-
 
 export default function HomePage() {
   const router = useRouter();
 
-
-const handleClick = () => {
-  router.push('/search');
-};
-
+  const handleClick = () => {
+    router.push("/search");
+  };
 
   return (
     <Box
       sx={{
-        // padding: { xs: 1, sm: 2 },
         backgroundColor: "#ffffff",
         fontFamily: "Arial, sans-serif",
       }}
     >
-
-  {/* Header Section */}
-  <Box
-    sx={{
-      backgroundColor: "#022A72",
-      padding: { xs: 1, sm: 2 },
-      borderRadius: 1,
-      mb: 2,
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      gap: 1,
-    }}
-  >
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+      {/* Header Section */}
       <Box
         sx={{
-          width: { xs: 25, sm: 30 },
-          height: { xs: 25, sm: 30 },
-          backgroundColor: "#EB5757", 
-          borderRadius: "50%",
-          color: "white",
+          backgroundColor: "#022A72",
+          padding: { xs: 1, sm: 2 },
+          borderRadius: 1,
+          mb: 2,
           display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
           alignItems: "center",
-          justifyContent: "center",
-          fontSize: { xs: "0.8rem", sm: "1rem" },
-          padding:0,
+          gap: 1,
         }}
       >
-        MH 
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box
+            sx={{
+              width: { xs: 25, sm: 30 },
+              height: { xs: 25, sm: 30 },
+              backgroundColor: "#EB5757",
+              borderRadius: "50%",
+              color: "white",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: { xs: "0.8rem", sm: "1rem" },
+              padding: 0,
+            }}
+          >
+            MH
+          </Box>
+          <Button
+            variant="contained"
+            sx={{
+              background: "linear-gradient(90deg, #f3f3f3, #f3f3f3)",
+              border: `2px solid #9DAE6C`,
+              color: "#000",
+              fontSize: { xs: "0.8rem", sm: "1rem" },
+              textTransform: "none",
+              borderRadius: "50px",
+              padding: { xs: "6px 12px", sm: "8px 16px" },
+            }}
+          >
+            Create New UPI ID
+          </Button>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <SearchIcon
+            sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}
+            onClick={handleClick}
+          />
+          <NotificationsIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
+        </Box>
       </Box>
-      <Button
-        variant="contained"
-        sx={{
-          background: "linear-gradient(90deg, #f3f3f3, #f3f3f3)", 
-          border: `2px solid #9DAE6C`, 
-          color: "#007bff",
-          fontSize: { xs: "0.8rem", sm: "1rem" },
 
-          borderRadius: "50px",
-          padding: { xs: "6px 12px", sm: "8px 16px" },
-         
-        }}
-       
-      >
-        Create New UPI ID 
-      </Button>
-    </Box>
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-      
-      <SearchIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}onClick={handleClick} />
-      <NotificationsIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} /> 
-    </Box>
-  </Box>
-
-      
       {/* UPI ID Display */}
-      <Box 
-      sx={{ mb: 2,
-         textAlign: "left", 
-         backgroundColor: "#F2F6F9",
-          padding: 0.8, 
-         m: 2, borderRadius: 2,
-         boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",}}>
-          <Typography sx={{ fontSize: { xs: "0.9rem", sm: "1rem" } }}>UPI ID:9978073872@paytm</Typography>
+      <Box
+        sx={{
+          mb: 2,
+          textAlign: "left",
+          backgroundColor: "#F2F6F9",
+          padding: 0.8,
+          m: 2,
+          borderRadius: 2,
+          boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <Typography sx={{ fontSize: { xs: "0.9rem", sm: "1rem" } }}>
+          UPI ID: 9978073872@paytm
+        </Typography>
       </Box>
 
       {/* Payment Options */}
       <Grid container spacing={1} sx={{ mb: 2, justifyContent: "center" }}>
-        {/* Button 1 */}
+        {/* Button 1: Scan & Pay */}
         <Grid item xs={3}>
           <Button
             fullWidth
-            
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -118,34 +110,26 @@ const handleClick = () => {
               justifyContent: "center",
               fontSize: { xs: "0.6rem", sm: "0.875rem" },
               color: "#022A72",
-              borderColor: "#022A72", // Removed outline as per your request
+              borderColor: "#022A72",
               "&:hover": {
                 borderColor: "#022A72",
                 backgroundColor: "rgba(2, 42, 114, 0.1)",
               },
-              padding: 0, // Removing padding around button to fit content perfectly
+              padding: 0,
             }}
           >
-            <Box
-              sx={{
-                backgroundColor: "#022A72",
-                color: "white",
-                borderRadius: "10%", // Changed border-radius to 10%
-                p: 1,
-                mb: 1, // Margin at the bottom for spacing
-              }}
-            >
-              <QrCodeScannerIcon />
+            <Box sx={{  mb: 0 }}>
+          
+              <img src="/scan-pay.png" alt="Scan & Pay" style={{ width: 40, height: 40 }} />
             </Box>
             Scan & Pay
           </Button>
         </Grid>
 
-        {/* Button 2 */}
+        {/* Button 2: To Mobile or Contact */}
         <Grid item xs={3}>
           <Button
             fullWidth
-           
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -153,34 +137,29 @@ const handleClick = () => {
               justifyContent: "center",
               fontSize: { xs: "0.6rem", sm: "0.875rem" },
               color: "#022A72",
-              borderColor: "#022A72", // Removed outline
+              borderColor: "#022A72",
               "&:hover": {
                 borderColor: "#022A72",
                 backgroundColor: "rgba(2, 42, 114, 0.1)",
               },
-              padding: 0, // Removed padding
+              padding: 0,
             }}
           >
-            <Box
-              sx={{
-                backgroundColor: "#022A72",
-                color: "white",
-                borderRadius: "10%", // Changed border-radius to 10%
-                p: 1,
-                mb: 1,
-              }}
-            >
-              <AssuredWorkloadIcon />
+            <Box sx={{  mb: 0 }}>
+              <img
+                src="/to-mobile-connect.png"
+                alt="To Mobile or Contact"
+                style={{ width: 40, height: 40 }}
+              />
             </Box>
-            To Mobile or Contact
+            To Mobile Contact
           </Button>
         </Grid>
 
-        {/* Button 3 */}
+        {/* Button 3: To Bank A/c or UPI ID */}
         <Grid item xs={3}>
           <Button
             fullWidth
-           
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -188,34 +167,25 @@ const handleClick = () => {
               justifyContent: "center",
               fontSize: { xs: "0.6rem", sm: "0.875rem" },
               color: "#022A72",
-              borderColor: "#022A72", // Removed outline
+              borderColor: "#022A72",
               "&:hover": {
                 borderColor: "#022A72",
                 backgroundColor: "rgba(2, 42, 114, 0.1)",
               },
-              padding: 0, // Removed padding
+              padding: 0,
             }}
           >
-            <Box
-              sx={{
-                backgroundColor: "#022A72",
-                color: "white",
-                borderRadius: "10%", // Changed border-radius to 10%
-                p: 1,
-                mb: 1,
-              }}
-            >
-              <HomeWorkIcon />
+            <Box sx={{  mb: 0 }}>
+              <img src="/to-bank-ac.png" alt="To Bank A/c" style={{ width: 40, height: 40 }} />
             </Box>
             To Bank A/c or UPI ID
           </Button>
         </Grid>
 
-        {/* Button 4 */}
+        {/* Button 4: To Self A/c */}
         <Grid item xs={3}>
           <Button
             fullWidth
-            
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -223,24 +193,16 @@ const handleClick = () => {
               justifyContent: "center",
               fontSize: { xs: "0.6rem", sm: "0.875rem" },
               color: "#022A72",
-              borderColor: "#022A72", // Removed outline
+              borderColor: "#022A72",
               "&:hover": {
                 borderColor: "#022A72",
                 backgroundColor: "rgba(2, 42, 114, 0.1)",
               },
-              padding: 0, // Removed padding
+              padding: 0,
             }}
           >
-            <Box
-              sx={{
-                backgroundColor: "#022A72",
-                color: "white",
-                borderRadius: "10%", // Changed border-radius to 10%
-                p: 1,
-                mb: 1,
-              }}
-            >
-              <ContactsIcon />
+            <Box sx={{  mb: 0 }}>
+              <img src="/to-self-ac.png" alt="To Self A/c" style={{ width: 40, height: 40 }} />
             </Box>
             To Self A/c
           </Button>
@@ -248,30 +210,34 @@ const handleClick = () => {
       </Grid>
 
       {/* Balance & QR */}
-      <Grid container spacing={1} 
-      sx={{ mb: 2
-            ,backgroundColor: "#f2f6f9",p: 1, 
-            
-       }}>
-        <Grid item xs={6}
-        sx={{ backgroundColor: "#ffffff",borderRadius: 2 }}>
+      <Grid
+        container
+        spacing={1}
+        sx={{ mb: 2, backgroundColor: "#f2f6f9", p: 1 }}
+      >
+        <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
           <Button
             fullWidth
-            startIcon={<AccountBalanceWalletIcon />}
-            
             sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}
           >
+            <img
+              src="/balance-history.png"
+              alt="Balance & History"
+              style={{ width: 20, height: 20, marginRight: 8 }}
+            />
             Check Balance & History
           </Button>
         </Grid>
-        <Grid item xs={6}
-        sx={{ backgroundColor: "#ffffff",borderRadius: 2, }}>
+        <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
           <Button
             fullWidth
-            startIcon={<SystemUpdateAltIcon/>}
-            
             sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}
           >
+            <img
+              src="/Recive money.png"
+              alt="Receive Money"
+              style={{ width: 20, height: 20, marginRight: 8 }}
+            />
             Receive money QR
           </Button>
         </Grid>
@@ -284,11 +250,12 @@ const handleClick = () => {
         sx={{ color: "#333", fontSize: { xs: "0.9rem", sm: "1.25rem" } }}
       >
         RECHARGES & BILL PAYMENTS{" "}
-        <span style={{ color: "#022A72", fontSize: "0.9em", textAlign: "right",marginLeft: "20px"}}>View all </span>
-        {/* <ArrowCircleRightIcon sx={{backgroundColor: "#f3f3f3", color: "#060606" ,}}/>  */}
+        <span style={{ color: "#022A72", fontSize: "0.9em", marginLeft: "20px" }}>
+          View all
+        </span>
       </Typography>
-      
-      <Grid container spacing={1} sx={{ mb: 2, justifyContent: "center",padding: 1 }}>
+
+      <Grid container spacing={1} sx={{ mb: 2, justifyContent: "center", padding: 1 }}>
         {/* Mobile Recharge Button */}
         <Grid item xs={3}>
           <Button
@@ -301,18 +268,22 @@ const handleClick = () => {
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
               "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)", // Background hover effect
+                backgroundColor: "rgba(2, 42, 114, 0.1)",
               },
-              padding: 0, // Removed padding
+              padding: 0,
             }}
           >
             <Box
               sx={{
-                color: "#022A72", // Set icon color to #022A72
-                backgroundColor: "white", // Keep icon background white
+                color: "#022A72",
+                backgroundColor: "white",
               }}
             >
-              <PhoneAndroidIcon />
+              <img
+                src="/mobile-recharge.png"
+                alt="Mobile Recharge"
+                style={{ width: 24, height: 24 }}
+              />
             </Box>
             Mobile Recharge
           </Button>
@@ -330,18 +301,18 @@ const handleClick = () => {
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
               "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)", // Background hover effect
+                backgroundColor: "rgba(2, 42, 114, 0.1)",
               },
-              padding: 0, // Removed padding
+              padding: 0,
             }}
           >
             <Box
               sx={{
-                color: "#022A72", // Set icon color to #022A72
-                backgroundColor: "white", // Keep icon background white
+                color: "#022A72",
+                backgroundColor: "white",
               }}
             >
-              <CreditCardIcon />
+              <img src="/cradit-card.png" alt="Credit Card" style={{ width: 24, height: 24 }} />
             </Box>
             Credit Card Home
           </Button>
@@ -359,153 +330,58 @@ const handleClick = () => {
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
               "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)", // Background hover effect
+                backgroundColor: "rgba(2, 42, 114, 0.1)",
               },
-              padding: 0, // Removed padding
+              padding: 0,
             }}
           >
             <Box
               sx={{
                 color: "#022A72",
-                backgroundColor: "white", 
+                backgroundColor: "white",
               }}
             >
-              <LightbulbIcon />
+              <img
+                src="/Electricity-bill.png"
+                alt="Electricity"
+                style={{ width: 24, height: 24 }}
+              />
             </Box>
             Electricity
           </Button>
         </Grid>
 
-          {/* FASTag Button */}
-          <Grid item xs={3}>
-            <Button
-              fullWidth
+        {/* FASTag Button */}
+        <Grid item xs={3}>
+          <Button
+            fullWidth
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: { xs: "0.75rem", sm: "0.875rem" },
+              color: "#022A72",
+              "&:hover": {
+                backgroundColor: "rgba(2, 42, 114, 0.1)",
+              },
+              padding: 0,
+            }}
+          >
+            <Box
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
-                "&:hover": {
-                  backgroundColor: "rgba(2, 42, 114, 0.1)", // Background hover effect
-                },
-                padding: 0, // Removed padding
+                backgroundColor: "white",
               }}
             >
-              <Box
-                sx={{
-                  color: "#022A72", // Set icon color to #022A72
-                  backgroundColor: "white", // Keep icon background white
-                }}
-              >
-                <CreditCardIcon />
-              </Box>
-              FASTag Recharge
-            </Button>
-          </Grid>
+              <img src="/fastag.png" alt="FASTag" style={{ width: 24, height: 24 }} />
+            </Box>
+            FASTag Recharge
+          </Button>
+        </Grid>
       </Grid>
 
-
       {/* Do More With Paytm */}
-      
-      {/* <Box sx={{ mb: 2, backgroundColor: "#e0f7fa", p: 2, borderRadius: 1 }}>
-      <Typography
-        variant="h6"
-        gutterBottom
-        sx={{ color: "#333", fontSize: { xs: "0.9rem", sm: "1.25rem" } }}
-      >
-        DO MORE WITH PAYTM
-      </Typography>
-
-        <Grid container spacing={1}>
-          <Grid item xs={6} sm={3}>
-            <Button
-              fullWidth
-              startIcon={<AccountBalanceWalletIcon />}
-              
-              sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
-            >
-              Personal Loan
-            </Button>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Button
-              fullWidth
-              startIcon={<CreditCardIcon />}
-              
-              sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
-            >
-              Credit Card
-            </Button>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Button
-              fullWidth
-              startIcon={<PaymentIcon />}
-              
-              sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
-            >
-              Paytm Money
-            </Button>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Button
-              fullWidth
-              startIcon={<ShowChartIcon />}
-              
-              sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
-            >
-              SIP @ ₹250
-            </Button>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Button
-              fullWidth
-              startIcon={<FlightIcon />}
-              
-              sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
-            >
-              Travel
-            </Button>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Button
-              fullWidth
-              startIcon={<LocalMoviesIcon />}
-              
-              sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
-            >
-              Movies
-            </Button>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Button
-              fullWidth
-              
-              sx={{
-                backgroundColor: "#00baf2",
-                color: "white",
-                fontSize: { xs: "0.75rem", sm: "0.875rem" },
-                "&:hover": { backgroundColor: "#007bff" },
-              }}
-              startIcon={<QrCodeScannerIcon />}
-            >
-              Scan Any QR
-            </Button>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Button
-              fullWidth
-              startIcon={<PaymentIcon />}
-              
-              sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
-            >
-              All Services
-            </Button>
-          </Grid>
-        </Grid>
-      </Box> */}
       <Box sx={{ mb: 2, backgroundColor: "#e0f7fa", p: 2, borderRadius: 1 }}>
         <Typography
           variant="h6"
@@ -516,7 +392,6 @@ const handleClick = () => {
         </Typography>
 
         <Grid container spacing={1}>
-          {/* Personal Loan Button */}
           <Grid item xs={3}>
             <Button
               fullWidth
@@ -530,25 +405,15 @@ const handleClick = () => {
                 "&:hover": {
                   backgroundColor: "rgba(2, 42, 114, 0.1)",
                 },
-                padding: 0, // Removing padding around button to fit content perfectly
+                padding: 0,
               }}
             >
-              <Box
-                sx={{
-                   
-                  color: "#022A72",
-                  borderRadius: "10%", // Rounded corners for the icon box
-                  p: 1,
-                  mb: 1, // Space between icon and text
-                }}
-              >
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
                 <AccountBalanceWalletIcon />
               </Box>
               Personal Loan
             </Button>
           </Grid>
-
-          {/* Credit Card Button */}
           <Grid item xs={3}>
             <Button
               fullWidth
@@ -565,22 +430,12 @@ const handleClick = () => {
                 padding: 0,
               }}
             >
-              <Box
-                sx={{
-                   
-                  color: "#022A72",
-                  borderRadius: "10%",
-                  p: 1,
-                  mb: 1,
-                }}
-              >
-                <CreditCardIcon />
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
+                <img src="/cradit-card.png" alt="Credit Card" style={{ width: 24, height: 24 }} />
               </Box>
               Credit Card
             </Button>
           </Grid>
-
-          {/* Paytm Money Button */}
           <Grid item xs={3}>
             <Button
               fullWidth
@@ -597,22 +452,12 @@ const handleClick = () => {
                 padding: 0,
               }}
             >
-              <Box
-                sx={{
-                   
-                  color: "#022A72",
-                  borderRadius: "10%",
-                  p: 1,
-                  mb: 1,
-                }}
-              >
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
                 <PaymentIcon />
               </Box>
               Paytm Money
             </Button>
           </Grid>
-
-          {/* SIP @ ₹250 Button */}
           <Grid item xs={3}>
             <Button
               fullWidth
@@ -629,22 +474,12 @@ const handleClick = () => {
                 padding: 0,
               }}
             >
-              <Box
-                sx={{
-                   
-                  color: "#022A72",
-                  borderRadius: "10%",
-                  p: 1,
-                  mb: 1,
-                }}
-              >
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
                 <ShowChartIcon />
               </Box>
               SIP @ ₹250
             </Button>
           </Grid>
-
-          {/* Travel Button */}
           <Grid item xs={3}>
             <Button
               fullWidth
@@ -661,22 +496,12 @@ const handleClick = () => {
                 padding: 0,
               }}
             >
-              <Box
-                sx={{
-                   
-                  color: "#022A72",
-                  borderRadius: "10%",
-                  p: 1,
-                  mb: 1,
-                }}
-              >
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
                 <FlightIcon />
               </Box>
               Travel
             </Button>
           </Grid>
-
-          {/* Movies Button */}
           <Grid item xs={3}>
             <Button
               fullWidth
@@ -693,22 +518,12 @@ const handleClick = () => {
                 padding: 0,
               }}
             >
-              <Box
-                sx={{
-                   
-                  color: "#022A72",
-                  borderRadius: "10%",
-                  p: 1,
-                  mb: 1,
-                }}
-              >
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
                 <LocalMoviesIcon />
               </Box>
               Movies
             </Button>
           </Grid>
-
-          {/* Scan Any QR Button */}
           <Grid item xs={3}>
             <Button
               fullWidth
@@ -725,22 +540,12 @@ const handleClick = () => {
                 padding: 0,
               }}
             >
-              <Box
-                sx={{
-                   
-                  color: "#022A72",
-                  borderRadius: "10%",
-                  p: 1,
-                  mb: 1,
-                }}
-              >
-                <QrCodeScannerIcon />
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
+                <img src="/scan-pay.png" alt="Scan QR" style={{ width: 24, height: 24 }} />
               </Box>
               Scan QR
             </Button>
           </Grid>
-
-          {/* All Services Button */}
           <Grid item xs={3}>
             <Button
               fullWidth
@@ -757,24 +562,14 @@ const handleClick = () => {
                 padding: 0,
               }}
             >
-              <Box
-                sx={{
-                   
-                  color: "#022A72",
-                  borderRadius: "10%",
-                  p: 1,
-                  mb: 1,
-                }}
-              >
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
                 <PaymentIcon />
               </Box>
               All Services
             </Button>
           </Grid>
         </Grid>
-
       </Box>
-
 
       {/* Free Tools */}
       <Typography
@@ -785,7 +580,6 @@ const handleClick = () => {
         FREE TOOLS
       </Typography>
       <Grid container spacing={1} sx={{ mb: 2 }}>
-        {/* Credit Score Button */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -799,25 +593,15 @@ const handleClick = () => {
               "&:hover": {
                 backgroundColor: "rgba(2, 42, 114, 0.1)",
               },
-              padding: 0, // Removed padding around button to fit content perfectly
+              padding: 0,
             }}
           >
-            <Box
-              sx={{
-                // backgroundColor: "#022A72",
-                color: "#022A72",
-                borderRadius: "10%",
-                p: 1,
-                mb: 1, // Space between icon and text
-              }}
-            >
+            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
               <ShowChartIcon />
             </Box>
             Credit Score
           </Button>
         </Grid>
-
-        {/* Mutual Fund Button */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -834,22 +618,12 @@ const handleClick = () => {
               padding: 0,
             }}
           >
-            <Box
-              sx={{
-                // backgroundColor: "#022A72",
-                color: "#022A72",
-                borderRadius: "10%",
-                p: 1,
-                mb: 1,
-              }}
-            >
+            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
               <ShowChartIcon />
             </Box>
             Mutual Fund
           </Button>
         </Grid>
-
-        {/* Ask AI Button */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -866,22 +640,12 @@ const handleClick = () => {
               padding: 0,
             }}
           >
-            <Box
-              sx={{
-                // backgroundColor: "#022A72",
-                color: "#022A72",
-                borderRadius: "10%",
-                p: 1,
-                mb: 1,
-              }}
-            >
+            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
               <PaymentIcon />
             </Box>
             Ask AI
           </Button>
         </Grid>
-
-        {/* Insurance Button */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -898,15 +662,7 @@ const handleClick = () => {
               padding: 0,
             }}
           >
-            <Box
-              sx={{
-                // backgroundColor: "#022A72",
-                color: "#022A72",
-                borderRadius: "10%",
-                p: 1,
-                mb: 1,
-              }}
-            >
+            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
               <AccountBalanceWalletIcon />
             </Box>
             Insurance
@@ -914,34 +670,28 @@ const handleClick = () => {
         </Grid>
       </Grid>
 
-      
-
       {/* Cashback & Ad */}
-      <Grid container spacing={1} 
-      sx={{ mb: 2
-            ,backgroundColor: "#f2f6f9",p: 1, 
-            
-       }}>
-        <Grid item xs={6}
-        sx={{ backgroundColor: "#ffffff",borderRadius: 2 }}>
+      <Grid
+        container
+        spacing={1}
+        sx={{ mb: 2, backgroundColor: "#f2f6f9", p: 1 }}
+      >
+        <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
           <Button
             fullWidth
             startIcon={<AccountBalanceWalletIcon />}
-            
             sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}
           >
-            cashback & Offers 
+            Cashback & Offers
           </Button>
         </Grid>
-        <Grid item xs={6}
-        sx={{ backgroundColor: "#ffffff",borderRadius: 2, }}>
+        <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
           <Button
             fullWidth
-            startIcon={<SystemUpdateAltIcon/>}
-            
+            startIcon={<img src="/Recive money.png" alt="Points" style={{ width: 20, height: 20 }} />}
             sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}
           >
-            Points & gift Cards 
+            Points & Gift Cards
           </Button>
         </Grid>
       </Grid>
@@ -949,29 +699,28 @@ const handleClick = () => {
       <Box
         sx={{
           mb: 2,
-          backgroundColor: "#022A72", 
+          backgroundColor: "#022A72",
           p: 2,
-          borderRadius: "2rem", 
-          width: "auto", 
+          borderRadius: "2rem",
+          width: "auto",
           maxWidth: "150px",
           textAlign: "center",
           color: "white",
-          margin: "0 auto", 
+          margin: "0 auto",
         }}
-        >
+      >
         <Typography
           sx={{
             fontSize: { xs: "0.9rem", sm: "1rem" },
-            display: "flex", 
-            alignItems: "center", 
+            display: "flex",
+            alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <QrCodeScannerIcon sx={{ marginRight: 1 }} /> 
+          <img src="/scan-pay.png" alt="Scan Any QR" style={{ width: 20, height: 20, marginRight: 8 }} />
           Scan Any QR
         </Typography>
       </Box>
-
     </Box>
   );
 }

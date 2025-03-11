@@ -3,7 +3,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Box, Typography } from '@mui/material';
-import { VerifiedUser } from '@mui/icons-material';
 import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '../../store/store';
 import { setLoading } from '../../store/loadingSlice';
@@ -15,11 +14,11 @@ const SplashScreen = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      dispatch(setLoading(false)); // Update Redux state
-      router.push('/home'); // Redirect to homepage
-    }, 3000); // 5.5 seconds
+      dispatch(setLoading(false)); 
+      router.push('/home'); 
+    }, 3000); 
 
-    return () => clearTimeout(timer); // Cleanup
+    return () => clearTimeout(timer); 
   }, [dispatch, router]);
 
   return (
@@ -31,22 +30,40 @@ const SplashScreen = () => {
         alignItems: 'center',
         height: '100vh',
         backgroundColor: '#fff',
-        padding: '20px',
+        padding: '10px',
       }}
       suppressHydrationWarning // Suppress hydration mismatch
     >
       {/* Paytm Logo */}
       <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
-        <Image src="/main-logo.svg" alt="Paytm Logo" width={200} height={100} />
+        <Image src="/paytm-home-logo.webp" alt="Paytm Logo" width={200} height={200} />
       </Box>
 
       {/* Secure Badge */}
-      <Box sx={{ textAlign: 'center', marginBottom: '20px' }}>
-        <VerifiedUser sx={{ fontSize: 40, color: '#00baf2' }} />
-        <Typography variant="body2" color="textSecondary">
-          100% SECURE PAYMENTS
-        </Typography>
-      </Box>
+        <Box 
+          sx={{ 
+            textAlign: 'center', 
+            marginBottom: '20px', 
+            borderBottom: '5px solid #0A207A' 
+          }}
+        >
+          <Typography 
+            variant="body2" 
+            color="textSecondary" 
+            sx={{ 
+              fontSize: 25, 
+              color: '#0A207A', 
+              fontWeight: 700,  
+              fontStyle: 'italic', 
+              p:1,
+
+            }}
+          >
+            Top Rated <br/>
+            UPI App in India
+          </Typography>
+        </Box>
+
     </Box>
   );
 };
