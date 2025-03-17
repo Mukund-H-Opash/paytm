@@ -8,8 +8,8 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
+import ArrowForward from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import QRCode from "react-qr-code"; 
 
 export default function QRTicketsPage() {
@@ -78,30 +78,37 @@ export default function QRTicketsPage() {
   });
 
   return (
-    <Box sx={{ backgroundColor: "#ffffff", padding: 2, minHeight: "100vh" }}>
+    <Box sx={{ backgroundColor: "#ffffff", padding: 2, }}>
       {/* Header */}
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
         <IconButton onClick={handleBackClick} sx={{ color: "#000000" }}>
           <ArrowBackIcon />
         </IconButton>
+        <img src="/scan-pay.png" alt="Logo" style={{ height: 24 }} />
         <Typography variant="h6" sx={{ fontSize: "1rem" }}>
           1 QR Ticket
         </Typography>
-        <IconButton sx={{ color: "#0288d1" }}>
-          <HelpOutlineIcon />
-        </IconButton>
+        <Button sx={{ color: "#0288d1", textTransform: "none" }}>Help</Button>
+        
       </Box>
 
       {/* From and To */}
-      <Typography sx={{ fontSize: "1rem", mb: 2 }}>
-        {orderDetails.from} <ArrowBackIcon sx={{ fontSize: "16px", mx: 1 }} /> {orderDetails.to}
-      </Typography>
+      
+        <Typography sx={{ fontSize: "1.5rem", mb: 1  ,fontWeight: "bold" ,p:1, justifyContent: "center"}}>
+          {orderDetails.from}... <ArrowForward sx={{ fontSize: "16px", mx: 1 }} /> {orderDetails.to}..
+        </Typography>
+      
+        <Box sx={{display: "flex", textAlign: "center", mb: 2 , justifyContent: "center"}} >
+          <Typography sx={{ fontSize: "0.9rem", mb: 2 }}>
+            scan this Qr at entry & exit points 
+          </Typography>
+        </Box>
 
       {/* QR Code */}
       <Box sx={{ textAlign: "center", mb: 2 }}>
         <QRCode
-          value={ticketId} // Use the random ticket ID for the QR code
-          size={200}
+          value={ticketId} 
+          size={250}
           fgColor="#000000"
           bgColor="#ffffff"
           level="H"
@@ -111,31 +118,49 @@ export default function QRTicketsPage() {
       {/* Countdown */}
       <Box
         sx={{
-          backgroundColor: "#e3f2fd",
+          backgroundColor: "#fff",
           padding: 1,
           borderRadius: 4,
           mb: 2,
           textAlign: "center",
         }}
       >
-        <Typography sx={{ fontSize: "0.875rem" }}>
-          Your ticket is valid for {countdown}
-        </Typography>
+          <Typography sx={{ fontSize: "0.875rem", justifyItems: "center" }}>
+            Your ticket is valid for 
+          </Typography>
+          <Typography sx={{ fontSize: "2.25rem", justifyItems: "center" ,fontWeight: "bold",}}>
+          {countdown}
+          </Typography>
+          <Typography sx={{ fontSize: "0.675rem", justifyItems: "center" }}>
+          HOURS  MINUTES  SECONDS
+          </Typography>
+
       </Box>
 
       {/* Ticket Details */}
-      <Box sx={{ mb: 2 }}>
-        <Typography sx={{ fontSize: "0.875rem", mb: 1 }}>Ticket Details On</Typography>
-        <Typography sx={{ fontSize: "0.75rem" }}>Issued On: {issuedTime}</Typography>
-        <Typography sx={{ fontSize: "0.75rem" }}>Order ID: {orderId}</Typography>
-        <Typography sx={{ fontSize: "0.75rem" }}>Order Item ID: {orderItemId}</Typography>
-        <Typography sx={{ fontSize: "0.75rem" }}>Ticket Type: {ticketType}</Typography>
+      <Box sx={{ mb: 2, border: "1px solid #e0e0e0", borderRadius: 2, padding: 1 }}>
+        <Typography sx={{ fontSize: "0.85rem", mb: 1 }}>Ticket Details</Typography>
+
+        <Box sx={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #e0e0e0", p: 1 }}>
+          <Typography sx={{ fontSize: "0.75rem" }}>Issued On:</Typography>
+          <Typography sx={{ fontSize: "0.75rem" }}>{issuedTime}</Typography>
+        </Box>
+        <Box sx={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #e0e0e0", p: 1 }}>
+          <Typography sx={{ fontSize: "0.75rem" }}>Order ID:</Typography>
+          <Typography sx={{ fontSize: "0.75rem" }}>{orderId}</Typography>
+        </Box>
+        <Box sx={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #e0e0e0", p: 1 }}>
+          <Typography sx={{ fontSize: "0.75rem" }}>Order Item ID:</Typography>
+          <Typography sx={{ fontSize: "0.75rem" }}>{orderItemId}</Typography>
+        </Box>
+        <Box sx={{ display: "flex", justifyContent: "space-between", p: 1, pb: 0 }}>
+          <Typography sx={{ fontSize: "0.75rem" }}>Ticket Type:</Typography>
+          <Typography sx={{ fontSize: "0.75rem" }}> 1 {ticketType}</Typography>
+        </Box>
       </Box>
 
-      {/* Bottom Navigation */}
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-        <Button sx={{ color: "#0288d1", textTransform: "none" }}>Help</Button>
-      </Box>
+    
+      
     </Box>
   );
 }

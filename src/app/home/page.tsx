@@ -4,11 +4,7 @@ import { Box, Typography, Button, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 // Keep the MUI icons we still need
 import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import PaymentIcon from "@mui/icons-material/Payment";
-import ShowChartIcon from "@mui/icons-material/ShowChart";
-import FlightIcon from "@mui/icons-material/Flight";
-import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
+import NotificationsIcon from "@mui/icons-material/Notifications"
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
 export default function HomePage() {
@@ -22,7 +18,7 @@ export default function HomePage() {
     <Box
       sx={{
         backgroundColor: "#ffffff",
-        fontFamily: "Arial, sans-serif",
+        fontFamily: "Arial, sans-serif", 
       }}
     >
       {/* Header Section */}
@@ -71,7 +67,7 @@ export default function HomePage() {
             Create New UPI ID
           </Button>
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1,scale:1.2 }}>
           <SearchIcon
             sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}
             onClick={handleClick}
@@ -223,7 +219,7 @@ export default function HomePage() {
             <img
               src="/balance-history.png"
               alt="Balance & History"
-              style={{ width: 20, height: 20, marginRight: 8 }}
+              style={{ width: 22, height: 28, marginRight: 8 }}
             />
             Check Balance & History
           </Button>
@@ -236,7 +232,7 @@ export default function HomePage() {
             <img
               src="/Recive money.png"
               alt="Receive Money"
-              style={{ width: 20, height: 20, marginRight: 8 }}
+              style={{ width: 22, height: 28, marginRight: 8 }}
             />
             Receive money QR
           </Button>
@@ -247,7 +243,7 @@ export default function HomePage() {
       <Typography
         variant="h6"
         gutterBottom
-        sx={{ color: "#333", fontSize: { xs: "0.9rem", sm: "1.25rem" } }}
+        sx={{ color: "#333", fontSize: { xs: "0.9rem", sm: "1.25rem", paddingLeft: 15 } }}
       >
         RECHARGES & BILL PAYMENTS{" "}
         <span style={{ color: "#022A72", fontSize: "0.9em", marginLeft: "20px" }}>
@@ -265,6 +261,7 @@ export default function HomePage() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              textTransform: "none",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
               "&:hover": {
@@ -282,7 +279,7 @@ export default function HomePage() {
               <img
                 src="/mobile-recharge.png"
                 alt="Mobile Recharge"
-                style={{ width: 24, height: 24 }}
+                style={{ width: 24, height: 28 }}
               />
             </Box>
             Mobile Recharge
@@ -298,6 +295,7 @@ export default function HomePage() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              textTransform: "none",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
               "&:hover": {
@@ -310,11 +308,12 @@ export default function HomePage() {
               sx={{
                 color: "#022A72",
                 backgroundColor: "white",
+                pb: 0.8,
               }}
             >
-              <img src="/cradit-card.png" alt="Credit Card" style={{ width: 24, height: 24 }} />
+              <img src="/cradit-card.png" alt="Credit Card" style={{ width: 32, height: 22 }}  />
             </Box>
-            Credit Card Home
+            Credit Card 
           </Button>
         </Grid>
 
@@ -327,6 +326,7 @@ export default function HomePage() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              textTransform: "none",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
               "&:hover": {
@@ -339,12 +339,13 @@ export default function HomePage() {
               sx={{
                 color: "#022A72",
                 backgroundColor: "white",
+                pb:0.3,
               }}
             >
               <img
                 src="/Electricity-bill.png"
                 alt="Electricity"
-                style={{ width: 24, height: 24 }}
+                style={{ width: 26, height: 26 }}
               />
             </Box>
             Electricity
@@ -360,6 +361,7 @@ export default function HomePage() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              textTransform: "none",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
               "&:hover": {
@@ -372,16 +374,16 @@ export default function HomePage() {
               sx={{
                 color: "#022A72",
                 backgroundColor: "white",
+                pb:0.2,
               }}
             >
-              <img src="/fastag.png" alt="FASTag" style={{ width: 24, height: 24 }} />
+              <img src="/fastag.png" alt="FASTag" style={{ width: 32
+                , height: 26 }} />
             </Box>
             FASTag Recharge
           </Button>
         </Grid>
       </Grid>
-
-      {/* Do More With Paytm */}
       <Box sx={{ mb: 2, backgroundColor: "#e0f7fa", p: 2, borderRadius: 1 }}>
         <Typography
           variant="h6"
@@ -399,6 +401,7 @@ export default function HomePage() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                textTransform: "none",
                 justifyContent: "center",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
@@ -408,8 +411,8 @@ export default function HomePage() {
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-                <AccountBalanceWalletIcon />
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
+                <img src="/ploan.png" alt="Personal Loan" style={{ width: 24, height: 24 }} />
               </Box>
               Personal Loan
             </Button>
@@ -422,6 +425,7 @@ export default function HomePage() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                textTransform: "none",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
                 "&:hover": {
@@ -430,8 +434,8 @@ export default function HomePage() {
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-                <img src="/cradit-card.png" alt="Credit Card" style={{ width: 24, height: 24 }} />
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
+                <img src="/cradit-card-2.png" alt="Credit Card" style={{ width: 32, height: 22 }} />
               </Box>
               Credit Card
             </Button>
@@ -444,6 +448,7 @@ export default function HomePage() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                textTransform: "none",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
                 "&:hover": {
@@ -452,8 +457,8 @@ export default function HomePage() {
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-                <PaymentIcon />
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+                <img src="/paytm-money.png" alt="Paytm Money" style={{ width: 24, height: 24 }} />
               </Box>
               Paytm Money
             </Button>
@@ -466,6 +471,7 @@ export default function HomePage() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                textTransform: "none",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
                 "&:hover": {
@@ -474,8 +480,8 @@ export default function HomePage() {
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-                <ShowChartIcon />
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+                <img src="/sip.png" alt="SIP" style={{ width: 24, height: 24 }} />
               </Box>
               SIP @ ₹250
             </Button>
@@ -487,6 +493,7 @@ export default function HomePage() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                textTransform: "none",
                 justifyContent: "center",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
@@ -496,8 +503,8 @@ export default function HomePage() {
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-                <FlightIcon />
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+                <img src="/flight-bus.png" alt="Travel" style={{ width: 24, height: 24 }} />
               </Box>
               Travel
             </Button>
@@ -509,6 +516,7 @@ export default function HomePage() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                textTransform: "none",
                 justifyContent: "center",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
@@ -518,12 +526,36 @@ export default function HomePage() {
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-                <LocalMoviesIcon />
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+                <img src="/24k.png" alt="Movies" style={{ width: 24, height: 24 }} />
+              </Box>
+              Buy Gold
+            </Button>
+          </Grid>
+          <Grid item xs={3}>
+            <Button
+              fullWidth
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textTransform: "none",
+                justifyContent: "center",
+                fontSize: { xs: "0.75rem", sm: "0.875rem" },
+                color: "#022A72",
+                "&:hover": {
+                  backgroundColor: "rgba(2, 42, 114, 0.1)",
+                },
+                padding: 0,
+              }}
+            >
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+                <img src="/movies.png" alt="Movies" style={{ width: 24, height: 24 }} />
               </Box>
               Movies
             </Button>
           </Grid>
+          
           <Grid item xs={3}>
             <Button
               fullWidth
@@ -532,6 +564,7 @@ export default function HomePage() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
+                textTransform: "none",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
                 "&:hover": {
@@ -540,30 +573,8 @@ export default function HomePage() {
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-                <img src="/scan-pay.png" alt="Scan QR" style={{ width: 24, height: 24 }} />
-              </Box>
-              Scan QR
-            </Button>
-          </Grid>
-          <Grid item xs={3}>
-            <Button
-              fullWidth
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: { xs: "0.75rem", sm: "0.875rem" },
-                color: "#022A72",
-                "&:hover": {
-                  backgroundColor: "rgba(2, 42, 114, 0.1)",
-                },
-                padding: 0,
-              }}
-            >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-                <PaymentIcon />
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+                <img src="/all-services.png" alt="All Services" style={{ width: 24, height: 24 }} />
               </Box>
               All Services
             </Button>
@@ -575,7 +586,7 @@ export default function HomePage() {
       <Typography
         variant="h6"
         gutterBottom
-        sx={{ color: "#333", fontSize: { xs: "1rem", sm: "1.25rem" } }}
+        sx={{ color: "#333", fontSize: { xs: "1rem", sm: "1.25rem" ,paddingLeft:15} }}
       >
         FREE TOOLS
       </Typography>
@@ -587,6 +598,7 @@ export default function HomePage() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              textTransform: "none",
               justifyContent: "center",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
@@ -596,8 +608,8 @@ export default function HomePage() {
               padding: 0,
             }}
           >
-            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-              <ShowChartIcon />
+            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
+              <img src="/check-credit.png" alt="Credit Score" style={{ width: 24, height: 24 }} />
             </Box>
             Credit Score
           </Button>
@@ -610,6 +622,7 @@ export default function HomePage() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              textTransform: "none",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
               "&:hover": {
@@ -618,8 +631,8 @@ export default function HomePage() {
               padding: 0,
             }}
           >
-            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-              <ShowChartIcon />
+            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
+              <img src="/sip.png" alt="Mutual Fund" style={{ width: 24, height: 24 }} />
             </Box>
             Mutual Fund
           </Button>
@@ -631,6 +644,7 @@ export default function HomePage() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              textTransform: "none",
               justifyContent: "center",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
@@ -640,8 +654,8 @@ export default function HomePage() {
               padding: 0,
             }}
           >
-            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-              <PaymentIcon />
+            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
+              <img src="/ask-ai.png" alt="Ask AI" style={{ width: 24, height: 24 }} />
             </Box>
             Ask AI
           </Button>
@@ -653,6 +667,7 @@ export default function HomePage() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              textTransform: "none",
               justifyContent: "center",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
@@ -662,8 +677,8 @@ export default function HomePage() {
               padding: 0,
             }}
           >
-            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 1 }}>
-              <AccountBalanceWalletIcon />
+            <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
+              <img src="/insurance.png" alt="Insurance" style={{ width: 25, height: 24 }} />
             </Box>
             Insurance
           </Button>
@@ -680,7 +695,7 @@ export default function HomePage() {
           <Button
             fullWidth
             startIcon={<AccountBalanceWalletIcon />}
-            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}
+            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem",textTransform: "none", } }}
           >
             Cashback & Offers
           </Button>
@@ -688,14 +703,15 @@ export default function HomePage() {
         <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
           <Button
             fullWidth
-            startIcon={<img src="/Recive money.png" alt="Points" style={{ width: 20, height: 20 }} />}
-            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}
+            startIcon={<img src="/points&gift.png" alt="Points" style={{ width: 20, height: 25 }} />}
+            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem",textTransform: "none", } }}
           >
             Points & Gift Cards
           </Button>
         </Grid>
       </Grid>
 
+      {/* Footer - unchanged since already using image */}
       <Box
         sx={{
           mb: 2,

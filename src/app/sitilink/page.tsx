@@ -1,8 +1,7 @@
 "use client";
 
 import { Box, Typography, Button, Grid } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance"; // Placeholder for city icons
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"; // Keeping this for back arrow
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -30,15 +29,16 @@ export default function CitySelectionPage() {
         minHeight: "100vh",
       }}
     >
-      {/* Header with Back Arrow */}
-      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-        <ArrowBackIcon
+      <ArrowBackIcon
           sx={{ color: "#000000", fontSize: "24px", cursor: "pointer" }}
           onClick={handleBackClick}
         />
+      {/* Header with Back Arrow */}
+      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        
         <Typography
           variant="h5"
-          sx={{ color: "#000000", fontSize: "1rem", ml: 1 }}
+          sx={{ color: "#000000", fontSize: "1.5rem", ml: 1, fontWeight: 600 }}
         >
           Select your City
         </Typography>
@@ -55,7 +55,7 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<AccountBalanceIcon sx={{ color: "#0288d1" }} />}
+          startIcon={<img src="/ahmedabad.png" alt="Ahmedabad" style={{ width: 40, height: 40, }} />}
         >
           Ahmedabad
         </Button>
@@ -70,7 +70,7 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<AccountBalanceIcon sx={{ color: "#0288d1" }} />}
+          startIcon={<img src="/goa.png" alt="Goa" style={{ width: 40, height: 40 }} />}
         >
           Goa
         </Button>
@@ -85,7 +85,7 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<AccountBalanceIcon sx={{ color: "#0288d1" }} />}
+          startIcon={<img src="/nashik.png" alt="Nashik" style={{ width: 40, height: 40 }} />}
         >
           Nashik
         </Button>
@@ -100,11 +100,11 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<AccountBalanceIcon sx={{ color: "#0288d1" }} />}
+          startIcon={<img src="/rajkot.png" alt="Rajkot" style={{ width: 40, height: 40 }} />}
         >
           Rajkot
         </Button>
-        <Box sx={{ borderBottom: "1px solid #e0e0e0", my: 1 }} /> {/* Horizontal line */}
+        <Box sx={{ borderBottom: "1px solid #e0e0e0", my: 1 }} /> 
 
         <Button
           fullWidth
@@ -115,14 +115,14 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<AccountBalanceIcon sx={{ color: "#0288d1" }} />}
+          startIcon={<img src="/surat.png" alt="Surat" style={{ width: 40, height: 40 }} />}
           onClick={handleSuratClick}
           endIcon={
             <Typography
               sx={{
-                color: "#2e7d32",
-                backgroundColor: "#e8f5e9",
-                borderRadius: "8px",
+                color: "#e8f5e9",
+                backgroundColor: "#21C179",
+                borderRadius: "4px",
                 padding: "2px 6px",
                 fontSize: "0.65rem !important",
               }}
@@ -144,13 +144,13 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<AccountBalanceIcon sx={{ color: "#0288d1" }} />}
+          startIcon={<img src="/mumbai.png" alt="Mumbai" style={{ width: 40, height: 40 }} />}
           endIcon={
             <Typography
               sx={{
-                color: "#2e7d32",
-                backgroundColor: "#e8f5e9",
-                borderRadius: "8px",
+                color: "#e8f5e9",
+                backgroundColor: "#21C179",
+                borderRadius: "4px",
                 padding: "2px 6px",
                 fontSize: "0.65rem !important",
               }}
@@ -161,6 +161,7 @@ export default function CitySelectionPage() {
         >
           Mumbai
         </Button>
+        <Box sx={{ borderBottom: "1px solid #e0e0e0", my: 1 }} />
       </Box>
     </Box>
   );

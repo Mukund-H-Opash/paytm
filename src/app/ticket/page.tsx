@@ -9,14 +9,17 @@ import {
   IconButton,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CheckCircle from "../../../public/check.png"
+import user from "../../../public/toon.png"
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import Image from "next/image"; // Import the Next.js Image component
+import Image from "next/image"; 
+import { Scale } from "@mui/icons-material";
 
 export default function TicketConfirmationPage() {
   const router = useRouter();
   const [orderDetails, setOrderDetails] = useState<any>(null);
-  const [countdown, setCountdown] = useState<string>("02:00:00");
+  const [countdown, setCountdown] = useState<string>("01:48:00");
   const [orderId, setOrderId] = useState<string>(generateRandomOrderId(11));
   const [transactionId, setTransactionId] = useState<string>(generateRandomTransactionId(12));
 
@@ -32,10 +35,10 @@ export default function TicketConfirmationPage() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const from = urlParams.get("from") || "Adajan G...";
-    const to = urlParams.get("to") || "Sanjeev Ku...";
-    const price = urlParams.get("price") || "4";
-    const passengers = urlParams.get("passengers") || "1";
+    const from = urlParams.get("from");
+    const to = urlParams.get("to");
+    const price = urlParams.get("price");
+    const passengers = urlParams.get("passengers");
 
     setOrderDetails({ from, to, price, passengers });
 
@@ -94,144 +97,152 @@ export default function TicketConfirmationPage() {
           <ArrowBackIcon />
         </IconButton>
         <Image
-          src="/paytm.png" // Path relative to the public folder
+          src="/paytm.png" 
           alt="Paytm Logo"
           width={100}
-          height={50} // Adjust height as needed
+          height={50} 
           style={{ objectFit: "contain" }}
         />
-        <IconButton sx={{ color: "#0288d1" }}>
-          <HelpOutlineIcon />
-        </IconButton>
+        <Button sx={{ color: "#0288d1", textTransform: "none" }}>Help</Button>
       </Box>
 
       {/* Center Content */}
-      <Box sx={{ textAlign: "center", mb: 2 }}>
-        <Box
-          sx={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 80,
-            height: 80,
-            borderRadius: "50%",
-            backgroundColor: "#ffffff",
-            border: "2px solid #0288d1",
-            mb: 2,
-          }}
-        >
-          <Image
-            src="/sitilink.png" 
-            alt="Sitilink Logo"
-            width={60}
-            height={60} 
-            style={{ objectFit: "contain",scale:1.5 }}
-          />
-        </Box>
-        <Typography sx={{ fontSize: "1rem", mb: 1 }}>
-          {orderDetails.from} <ArrowBackIcon sx={{ fontSize: "16px", mx: 1 }} />{" "}
-          {orderDetails.to}
-        </Typography>
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", mb: 1 }}>
-          <Typography sx={{ fontSize: "0.875rem", mr: 1 }}>1 Adult Ticket</Typography>
+      <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center",backgroundColor: "#96E9FF", borderRadius: 2, padding: 1 ,my:2 ,mb:0 }}>
+        <Box sx={{ textAlign: "center", mb: 2 ,mt:2 }}>
           <Box
             sx={{
-              width: 24,
-              height: 24,
-              borderRadius: "50%",
-              backgroundColor: "#f5f5f5",
-              display: "flex",
+              display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
+              width: 80,
+              height: 80,
+              borderRadius: "50%",
+              backgroundColor: "#ffffff",
+              
+              mb: 2,
             }}
           >
-            <Typography sx={{ fontSize: "0.75rem" }}>👤</Typography>
+            <Image
+              src="/sitilink.png" 
+              alt="Sitilink Logo"
+              width={60}
+              height={60} 
+              style={{ objectFit: "contain",scale:1.5 }}
+            />
           </Box>
-          <Typography sx={{ fontSize: "0.875rem", ml: 1 }}>
-            {orderDetails.passengers} Adult
+          <Typography sx={{ fontSize: "1.2rem", mb: 2 , fontWeight: "bold" }}>
+            {orderDetails.from} <ArrowForwardIcon sx={{ fontSize: "16px", mx: 1 }} />{" "}
+            {orderDetails.to}
+          </Typography>
+          <Typography sx={{ fontSize: "0.875rem", mr: 1  ,mb:2}}>1 Adult Ticket </Typography>
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", mb: 2 }}>
+            
+            <Box
+              sx={{
+                width: "60px",
+                height: "28px",
+                borderRadius: 4,
+                backgroundColor: "#f5f5f5",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <img src={user.src} width={20} height={27} style={{ overflow  : "hidden" }} ></img>
+            <Typography sx={{ fontSize: "0.875rem", ml: 1, fontWeight: "bold" }}>
+              {orderDetails.passengers} 
+            </Typography>
+            </Box>
+          </Box>
+
+
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", mb: 1 }}>
+            <Typography sx={{ fontSize: "1.50rem", fontWeight: "bold", mr: 1 }}>
+              ₹{orderDetails.price}
+            </Typography>
+           <img src={CheckCircle.src} width={20} height={20} style={{ scale: 1.5}}></img>
+          </Box>
+          <Typography sx={{ fontSize: "0.875rem",  mb: 2}}>
+            TICKET BOOKED SUCCESSFULLY
+          </Typography>
+          <Typography sx={{ fontSize: "0.675rem",  mb: 1}}>
+          {bookingTime}
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", mb: 1 }}>
-          <Typography sx={{ fontSize: "1.25rem", fontWeight: "bold", mr: 1 }}>
-            ₹{orderDetails.price}
-          </Typography>
-          <CheckCircleIcon sx={{ color: "#4caf50", fontSize: "24px" }} />
-        </Box>
-        <Typography sx={{ fontSize: "0.875rem", color: "#757575" }}>
-          Ticket Booked Successfully - {bookingTime}
-        </Typography>
-      </Box>
 
-      {/* Horizontal Line */}
-      <Box sx={{ borderBottom: "1px dashed #e0e0e0", my: 2 }} />
+        {/* Horizontal Line */}
+        <Box sx={{ borderBottom: "1px dotted #adadad", width: "90%", my: 2,  }} />
 
-      {/* Sticky Countdown Box */}
-      <Box
-        sx={{
-          position: "sticky",
-          top: 0,
-          backgroundColor: "#e3f2fd",
-          padding: 1,
-          borderRadius: 4,
-          mb: 2,
-          zIndex: 1000,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Typography sx={{ fontSize: "0.875rem" }}>
-          Your ticket is valid for {countdown}
-        </Typography>
-        <Button
-          variant="contained"
-          onClick={handleViewTickets}
-          sx={{ backgroundColor: "#0288d1", color: "#ffffff", borderRadius: "20px", textTransform: "none" }}
+        {/* Sticky Countdown Box */}
+        <Box
+          sx={{
+            position: "sticky",
+            top: 0,
+            backgroundColor: "#e3f2fd",
+            padding: 1,
+            borderRadius: 4,
+            mb: 2,
+            width: "90%",
+            height: "150px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
         >
-          View Your Tickets
-        </Button>
+          <Typography sx={{ fontSize: "0.875rem", justifyItems: "center" }}>
+            Your ticket is valid for 
+          </Typography>
+          <Typography sx={{ fontSize: "2.25rem", justifyItems: "center" ,fontWeight: "bold"}}>
+          {countdown}
+          </Typography>
+          <Typography sx={{ fontSize: "0.675rem", justifyItems: "center" }}>
+          HOURS  MINUTES  SECONDS
+          </Typography>
+          <Button
+            variant="contained"
+            onClick={handleViewTickets}
+            sx={{ backgroundColor: "#0288d1", color: "#ffffff", borderRadius: 2, textTransform: "none" ,width: "95%" }}
+          >
+            View Your Tickets
+          </Button>
+        </Box>
+        
       </Box>
-
-      {/* Horizontal Line */}
-      <Box sx={{ borderBottom: "1px dashed #e0e0e0", my: 2 }} />
+      <Box sx={{ borderBottom: "5px solid #00B8F6",width: "100%",}} />
+      <Box sx={{ borderBottom: "5px solid #2A50D9",width: "100%", }} />
 
       {/* Trip Details */}
-      <Box sx={{ mb: 2 }}>
-        <Typography sx={{ fontSize: "1rem", fontWeight: "bold", mb: 1 }}>Trip Details</Typography>
-        <Typography sx={{ fontSize: "0.875rem" }}>Operator: Surat Sitilink</Typography>
-        <Typography sx={{ fontSize: "0.875rem" }}>Order ID: {orderId}</Typography>
-        <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
-          <Typography sx={{ fontSize: "0.875rem" }}>{orderId}</Typography>
+      <Box sx={{ mb: 2  ,border: "1px solid #e0e0e0", borderRadius: 2, padding: 1 ,my:2 }}>
+        <Typography sx={{ fontSize: "1rem", fontWeight: "bold", py: 1 }}>Trip Details</Typography>
+        <Typography sx={{ fontSize: "0.7rem"  ,color: "#757575",pt: 1  }}>OPERATOR</Typography>
+        <Typography sx={{ fontSize: "0.775rem" ,pb:1}}>Surat Sitilink</Typography>
+        <Box sx={{ borderBottom: "1px dashed #e0e0e0", my: 1 }} />
+        
+        <Box sx={{ display: "flex", alignItems: "center", }}>
+        <Typography sx={{ fontSize: "0.775rem" ,}}>Order ID: {orderId}</Typography>
           <IconButton onClick={handleCopyOrderId} sx={{ ml: 1 }}>
-            <Typography sx={{ fontSize: "0.75rem" }}>Copy</Typography>
+            <Typography sx={{ fontSize: "0.65rem" }}>Copy</Typography>
           </IconButton>
         </Box>
-        <Typography sx={{ fontSize: "0.75rem", color: "#757575", mt: 1 }}>
+        <Typography sx={{ fontSize: "0.75rem", mt: 1 }}>
           For any queries regarding your ticket, please contact Surat Sitilink with Order ID.
         </Typography>
       </Box>
 
       {/* Payment Details */}
-      <Box sx={{ mb: 2 }}>
-        <Typography sx={{ fontSize: "1rem", fontWeight: "bold", mb: 1 }}>Payment Details</Typography>
-        <Typography sx={{ fontSize: "0.875rem" }}>Fare Breakup: 1x Adult</Typography>
-        <Typography sx={{ fontSize: "0.875rem" }}>Total: ₹{orderDetails.price}</Typography>
-        <Typography sx={{ fontSize: "0.875rem" }}>Payment Mode: UPI Linked Bank Account</Typography>
-        <Typography sx={{ fontSize: "0.875rem" }}>Amount: ₹{orderDetails.price}</Typography>
-        <Typography sx={{ fontSize: "0.875rem" }}>Transaction ID: {transactionId}</Typography>
+      <Box sx={{ mb: 2  ,border: "1px solid #e0e0e0", borderRadius: 2, padding: 1 ,my:2 }}>
+        <Typography sx={{ fontSize: "1rem", fontWeight: "bold", py: 1 }}>Payment Details</Typography>
+        <Typography sx={{ fontSize: "0.675rem" ,color: "#757575",py: 1  }}>FARE BREAKUP</Typography>
+        <Typography sx={{ fontSize: "0.75rem",py: 1  ,borderBottom: "1px solid #e0e0e0"}}> 1x Adult</Typography>
+        <Typography sx={{ fontSize: "0.775rem" ,py: 1,borderBottom:"1px dashed #e0e0e0"}}>Total: ₹{orderDetails.price}</Typography>
+        <Typography sx={{ fontSize: "0.775rem" ,color: "#757575", py: 1}}>Payment Mode  </Typography>
+        <Typography sx={{ fontSize: "0.775rem" ,py: 1}}>UPI Linked Bank Account</Typography>
+        <Typography sx={{ fontSize: "0.775rem" }}>₹{orderDetails.price}</Typography>
+        <Typography sx={{ fontSize: "0.775rem" ,py: 1}}>Transaction ID: {transactionId}</Typography>
       </Box>
 
-      {/* Blue Line (Decorative) */}
-      <Box sx={{ borderBottom: "4px solid #0288d1", mb: 2 }} />
-
-      {/* Bottom Navigation */}
-      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <Button sx={{ color: "#0288d1", textTransform: "none" }}>Cashback</Button>
-        <Button sx={{ color: "#0288d1", textTransform: "none" }}>Home</Button>
-        <IconButton sx={{ color: "#0288d1" }}>
-          <HelpOutlineIcon />
-        </IconButton>
-      </Box>
+  
     </Box>
   );
 }

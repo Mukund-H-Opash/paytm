@@ -9,11 +9,8 @@ import {
   TextField,
   MenuItem,
   Select,
-  InputAdornment,
-  IconButton,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import InfoIcon from "@mui/icons-material/Info";
 
@@ -138,22 +135,27 @@ export default function TicketBookingPage() {
           />
           <Typography
             variant="h5"
-            sx={{ color: "#000000", fontSize: { xs: "1rem", sm: "1.25rem" }, ml: 1 }}
+            sx={{ color: "#000000", fontSize: { xs: "1rem", sm: "1.5rem" }, ml: 1  , fontWeight: 800}}
           >
             Buy City Bus Ticket
           </Typography>
+        </Box>
+        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <Typography
-            sx={{ color: "#757575", fontSize: { xs: "0.875rem", sm: "1rem" }, ml: 1 }}
+            sx={{ color: "#757575", fontSize: { xs: "0.875rem", sm: "1rem" }, ml: 5 }}
           >
             Surat ▼
+
           </Typography>
-        </Box>
-        <Button
+
+          <Button
           onClick={() => {}}
           sx={{ color: "#0288d1", textTransform: "none", fontSize: { xs: "0.875rem", sm: "1rem" } }}
         >
           Help
         </Button>
+        </Box>
+        
       </Box>
 
       {/* Recent Orders */}
@@ -166,7 +168,7 @@ export default function TicketBookingPage() {
             mb: 1,
           }}
         >
-          <Typography variant="h6" sx={{ fontSize: "1rem" }}>
+          <Typography variant="h6" sx={{ fontSize: "1rem"  , fontWeight: 800}}>
             Recent Orders
           </Typography>
           <Button
@@ -180,8 +182,9 @@ export default function TicketBookingPage() {
           <Box
             key={index}
             sx={{
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#ffffff",
               borderRadius: 1,
+              border: "1px solid #e0e0e0",
               padding: 1,
               mb: 1,
             }}
@@ -194,7 +197,7 @@ export default function TicketBookingPage() {
               }}
             >
               <Box>
-                <Typography sx={{ fontSize: "0.875rem", color: "#757575" }}>
+                <Typography sx={{ fontSize: "0.875rem", color: "#757575", mb: 1 }}>
                   {order.passengers} Adult Ticket
                 </Typography>
                 <Typography sx={{ fontSize: "1rem" }}>
@@ -212,6 +215,7 @@ export default function TicketBookingPage() {
                   borderColor: "#0288d1",
                   borderRadius: "20px",
                   textTransform: "none",
+
                 }}
               >
                 Buy ₹{order.price}
@@ -223,12 +227,13 @@ export default function TicketBookingPage() {
 
       {/* Buy New Ticket */}
       <Box>
-        <Typography variant="h6" sx={{ fontSize: "1rem", mb: 1 }}>
+        <Typography variant="h6" sx={{ fontSize: "1rem", mb: 1 , fontWeight: 800}}>
           Buy New Ticket
         </Typography>
         <Box
           sx={{
-            backgroundColor: "#f5f5f5",
+            backgroundColor: "#ffffff",
+            border: "1px solid #e0e0e0", opacity: 0.61,
             borderRadius: 1,
             padding: 1,
             mb: 2,
