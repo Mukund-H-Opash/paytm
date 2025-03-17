@@ -4,6 +4,7 @@ import { Box, Typography, Button, Grid } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"; // Keeping this for back arrow
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
 
 export default function CitySelectionPage() {
   const router = useRouter();
