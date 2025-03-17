@@ -12,13 +12,11 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CheckCircle from "../../../public/check.png"
 import user from "../../../public/toon.png"
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Image from "next/image"; 
-import { Scale } from "@mui/icons-material";
 
 export default function TicketConfirmationPage() {
   const router = useRouter();
-  const [orderDetails, setOrderDetails] = useState<any>(null);
+  const [orderDetails, setOrderDetails] = useState<{ from: string; to: string; price: string; passengers: string }>({ from: '', to: '', price: '', passengers: '' });
   const [countdown, setCountdown] = useState<string>("01:48:00");
   const [orderId, setOrderId] = useState<string>(generateRandomOrderId(11));
   const [transactionId, setTransactionId] = useState<string>(generateRandomTransactionId(12));
@@ -35,10 +33,10 @@ export default function TicketConfirmationPage() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const from = urlParams.get("from");
-    const to = urlParams.get("to");
-    const price = urlParams.get("price");
-    const passengers = urlParams.get("passengers");
+    const from = urlParams.get("from") ?? '';
+    const to = urlParams.get("to") ?? '';
+    const price = urlParams.get("price") ?? '';
+    const passengers = urlParams.get("passengers") ?? '1';
 
     setOrderDetails({ from, to, price, passengers });
 

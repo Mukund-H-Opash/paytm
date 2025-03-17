@@ -26,7 +26,7 @@ import GppGoodIcon from '@mui/icons-material/GppGood';
 
 export default function PaymentPage() {
   const router = useRouter();
-  const [orderDetails, setOrderDetails] = useState<any>(null);
+  const [orderDetails, setOrderDetails] = useState<{ from: string; to: string; price: string; passengers: string }>({ from: '', to: '', price: '', passengers: '' });
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>("sbi");
 
   useEffect(() => {

@@ -14,7 +14,7 @@ import QRCode from "react-qr-code";
 
 export default function QRTicketsPage() {
   const router = useRouter();
-  const [orderDetails, setOrderDetails] = useState<any>(null);
+  const [orderDetails, setOrderDetails] = useState<{ from: string; to: string; price: string }>({ from: '', to: '', price: '' });
   const [countdown, setCountdown] = useState<string>("01:40:00"); 
   const [ticketId, setTicketId] = useState<string>(generateRandomTicketId(10)); 
   const [orderId, setOrderId] = useState<string>(generateRandomOrderId(11));
