@@ -67,7 +67,7 @@ export default function HomePage() {
             Create New UPI ID
           </Button>
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1,scale:1.2 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1,scale:1. }}>
           <SearchIcon
             sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}
             onClick={handleClick}

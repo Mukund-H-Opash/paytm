@@ -73,7 +73,7 @@ export default function UPIPaymentPage() {
           SBI Bank
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <img
+          <Image
             src={upiLogo.src}
             alt="UPI Logo"
             style={{ width: 60, height: 30,scale: 1.5 }}
@@ -126,7 +126,7 @@ export default function UPIPaymentPage() {
         {/* Confirmation Message */}
         <Box sx={{ backgroundColor: "#F5E690", borderRadius: 4, m:4, mb: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Typography sx={{ fontSize: "0.875rem", display: "flex", alignItems: "center" }}>
-            <img 
+            <Image 
             src={error.src}
             style={{ width: 50, height: 30, marginRight: 3 }}>
             </img>

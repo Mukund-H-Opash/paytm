@@ -22,6 +22,7 @@ import netBankingLogo from "../../../public/net-banking.png";
 import phonepeLogo from "../../../public/phone-pay.png";
 import gpayLogo from "../../../public/g-pay.png";
 import GppGoodIcon from '@mui/icons-material/GppGood';
+import Image from "next/image";
 
 
 export default function PaymentPage() {
@@ -103,14 +104,14 @@ export default function PaymentPage() {
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <img
+            <Image
               src={sbiLogo.src}
               alt="SBI Logo"
               style={{ width: 30, height: 30, marginRight: 10 }}
             />
             <Typography variant="body1">SBI Bank - 0100</Typography>
           </Box>
-          <img
+          <Image
               src={checkcircle.src}
               alt="SBI Logo"
               style={{ width: 20, height: 20,}}
@@ -129,7 +130,7 @@ export default function PaymentPage() {
             mb: 1,
           }}
         >
-          <img
+          <Image
             src={plus.src}
             alt="add"
             style={{ width: 30, height: 20, marginRight: 10 }}
@@ -156,24 +157,24 @@ export default function PaymentPage() {
               mb: 1,
             }}
           >
-            <Box> <img src={card.src} alt="card" style={{ width: 30, height: 20, marginRight: 10 }}/></Box>
+            <Box> <Image src={card.src} alt="card" style={{ width: 30, height: 20, marginRight: 10 }}/></Box>
 
             <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
 
               <Typography variant="body1">Debit & Credit Cards</Typography>
               <Box sx={{ display: "flex", gap: 1 }}>
-                <img
+                <Image
                   src={mastercardLogo.src}
                   alt="Mastercard Logo"
                   style={{ width: 25, height: 15, paddingTop:5}}
                   
                 />
-                <img
+                <Image
                   src={rupayLogo.src}
                   alt="RuPay Logo"
                   style={{ width: 25, height: 18 , paddingTop:5}}
                 />
-                <img
+                <Image
                   src={visaLogo.src}
                   alt="Visa Logo"
                   style={{ width: 25, height: 15 ,paddingTop:5}}
@@ -195,7 +196,7 @@ export default function PaymentPage() {
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <img
+              <Image
                 src={upiLogo.src}
                 alt="UPI Logo"
                 style={{ width: 30, height: 20, marginRight: 10 }}
@@ -204,17 +205,17 @@ export default function PaymentPage() {
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Typography variant="body1">UPI Options</Typography>
               <Box sx={{ display: "flex", gap: 1 }}>
-                <img
+                <Image
                   src={paytmLogo.src}
                   alt="paytm Logo"
                   style={{ width: 35, height: 20 }}
                 />
-                <img
+                <Image
                   src={phonepeLogo.src}
                   alt="PhonePe Logo"
                   style={{ width: 20, height: 20 }}
                 />
-                <img
+                <Image
                   src={gpayLogo.src}
                   alt="GPay Logo"
                   style={{ width: 20, height: 20 }}
@@ -237,7 +238,7 @@ export default function PaymentPage() {
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center" }}>
-              <img
+              <Image
                 src={netBankingLogo.src}
                 alt="Net Banking Logo"
                 style={{ width: 30, height: 30, marginRight: 10 }}

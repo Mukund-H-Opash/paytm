@@ -146,7 +146,8 @@ export default function TicketConfirmationPage() {
                 justifyContent: "center",
               }}
             >
-              <img src={user.src} width={20} height={27} style={{ overflow  : "hidden" }} ></img>
+              <Image src={user.src} alt="User icon" style={{ overflow: 'hidden', width: 20, height: 27 }} />
+
             <Typography sx={{ fontSize: "0.875rem", ml: 1, fontWeight: "bold" }}>
               {orderDetails.passengers} 
             </Typography>
@@ -158,7 +159,7 @@ export default function TicketConfirmationPage() {
             <Typography sx={{ fontSize: "1.50rem", fontWeight: "bold", mr: 1 }}>
               ₹{orderDetails.price}
             </Typography>
-           <img src={CheckCircle.src} width={20} height={20} style={{ scale: 1.5}}></img>
+           <Image src={CheckCircle.src} width={20} height={20} style={{ scale: 1.5 }} alt={""}/>
           </Box>
           <Typography sx={{ fontSize: "0.875rem",  mb: 2}}>
             TICKET BOOKED SUCCESSFULLY

@@ -11,6 +11,7 @@ import {
 import ArrowForward from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import QRCode from "react-qr-code"; 
+import Image from "next/image";
 
 export default function QRTicketsPage() {
   const router = useRouter();
@@ -84,7 +85,7 @@ export default function QRTicketsPage() {
         <IconButton onClick={handleBackClick} sx={{ color: "#000000" }}>
           <ArrowBackIcon />
         </IconButton>
-        <img src="/scan-pay.png" alt="Logo" style={{ height: 24 }} />
+        <Image src="/scan-pay.png" alt="Logo" style={{ height: 24 }} />
         <Typography variant="h6" sx={{ fontSize: "1rem" }}>
           1 QR Ticket
         </Typography>

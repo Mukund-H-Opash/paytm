@@ -14,6 +14,7 @@ import BackspaceIcon from "@mui/icons-material/Backspace";
 // Import UPI logo
 import upiLogo from "../../../public/upi-logo.png";
 import error from "../../../public/error.png";
+import Image from "next/image";
 
 export default function UPIPaymentPage() {
   const router = useRouter();
@@ -61,7 +62,7 @@ export default function UPIPaymentPage() {
           SBI Bank
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <img
+          <Image
             src={upiLogo.src}
             alt="UPI Logo"
             style={{ width: 60, height: 30, scale: 1.5 }}
@@ -110,8 +111,9 @@ export default function UPIPaymentPage() {
         {/* Confirmation Message */}
         <Box sx={{ backgroundColor: "#F5E690", borderRadius: 4, m: 4, mb: 6, display: "flex", alignItems: "center", justifyContent: "center" ,}}>
           <Typography sx={{ fontSize: "0.875rem", display: "flex", alignItems: "center" }}>
-            <img
+            <Image
               src={error.src}
+              alt=""
               style={{ width: 50, height: 30, marginRight: 3, marginLeft: 3 }}
             />
             You are SENDING ₹15 from your account to SURAT SITILINK 

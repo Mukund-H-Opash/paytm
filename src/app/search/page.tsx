@@ -143,7 +143,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/help-support.png" alt="Help" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/help-support.png" alt="Help" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Help & Support
             </Button>
@@ -158,7 +158,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/paytm-guide.png" alt="Guide" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/paytm-guide.png" alt="Guide" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Paytm Guide
             </Button>
@@ -173,7 +173,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/recent-payments.png" alt="Payments" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/recent-payments.png" alt="Payments" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Recent Payments
             </Button>
@@ -188,7 +188,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/orders-booking.png" alt="Orders" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/orders-booking.png" alt="Orders" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Orders & Bookings
             </Button>
@@ -228,7 +228,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/metro.png" alt="Metro" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/metro.png" alt="Metro" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Metro Tickets
             </Button>
@@ -243,7 +243,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/movie-tickets.png" alt="Movies" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/movie-tickets.png" alt="Movies" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Movie Tickets
             </Button>
@@ -258,7 +258,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/train-ticket.png" alt="Train" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/train-ticket.png" alt="Train" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Train Tickets
             </Button>
@@ -273,7 +273,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/cradit-score.png" alt="Credit" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/cradit-score.png" alt="Credit" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Credit Score
             </Button>
@@ -288,7 +288,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/referral-code.png" alt="Referral" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/referral-code.png" alt="Referral" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Referral Code
             </Button>
@@ -303,7 +303,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/fastag.png" alt="FASTag" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/fastag.png" alt="FASTag" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               FASTag Recharge
             </Button>
@@ -318,7 +318,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/flights.png" alt="Flights" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/flights.png" alt="Flights" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Flights
             </Button>
@@ -333,7 +333,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<img src="/MF-SIP.png" alt="MF SIP" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/MF-SIP.png" alt="MF SIP" style={{ width: 24, height: 24, marginBottom: 10 }} />}
             >
               Daily MF SIP
             </Button>

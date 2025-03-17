@@ -55,7 +55,7 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<img src="/ahmedabad.png" alt="Ahmedabad" style={{ width: 40, height: 40, }} />}
+          startIcon={<Image src="/ahmedabad.png" alt="Ahmedabad" style={{ width: 40, height: 40, }} />}
         >
           Ahmedabad
         </Button>
@@ -70,7 +70,7 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<img src="/goa.png" alt="Goa" style={{ width: 40, height: 40 }} />}
+          startIcon={<Image src="/goa.png" alt="Goa" style={{ width: 40, height: 40 }} />}
         >
           Goa
         </Button>
@@ -85,7 +85,7 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<img src="/nashik.png" alt="Nashik" style={{ width: 40, height: 40 }} />}
+          startIcon={<Image src="/nashik.png" alt="Nashik" style={{ width: 40, height: 40 }} />}
         >
           Nashik
         </Button>
@@ -100,7 +100,7 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<img src="/rajkot.png" alt="Rajkot" style={{ width: 40, height: 40 }} />}
+          startIcon={<Image src="/rajkot.png" alt="Rajkot" style={{ width: 40, height: 40 }} />}
         >
           Rajkot
         </Button>
@@ -115,7 +115,7 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<img src="/surat.png" alt="Surat" style={{ width: 40, height: 40 }} />}
+          startIcon={<Image src="/surat.png" alt="Surat" style={{ width: 40, height: 40 }} />}
           onClick={handleSuratClick}
           endIcon={
             <Typography
@@ -144,7 +144,7 @@ export default function CitySelectionPage() {
             padding: 1,
             "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.1)" },
           }}
-          startIcon={<img src="/mumbai.png" alt="Mumbai" style={{ width: 40, height: 40 }} />}
+          startIcon={<Image src="/mumbai.png" alt="Mumbai" style={{ width: 40, height: 40 }} />}
           endIcon={
             <Typography
               sx={{
