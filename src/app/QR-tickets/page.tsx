@@ -85,7 +85,7 @@ export default function QRTicketsPage() {
         <IconButton onClick={handleBackClick} sx={{ color: "#000000" }}>
           <ArrowBackIcon />
         </IconButton>
-        <Image src="/scan-pay.png" alt="Logo" style={{ height: 24 }} />
+        <Image src="/scan-pay.png" alt="Logo"   height= {24} width= {24} />
         <Typography variant="h6" sx={{ fontSize: "1rem" }}>
           1 QR Ticket
         </Typography>
