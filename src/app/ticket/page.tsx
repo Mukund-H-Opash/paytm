@@ -38,7 +38,10 @@ export default function TicketConfirmationPage() {
     const price = urlParams.get("price") ?? '';
     const passengers = urlParams.get("passengers") ?? '1';
 
-    setOrderDetails({ from, to, price, passengers });
+    if (from && to && price && passengers) {
+      setOrderDetails({ from, to, price, passengers });
+    }
+    
 
     // Start countdown timer (2 hours = 7200 seconds)
     let timeLeft = 7200;
@@ -125,6 +128,7 @@ export default function TicketConfirmationPage() {
               alt="Sitilink Logo"
               width={60}
               height={60} 
+              className="scl"
               style={{ objectFit: "contain",scale:1.5 }}
             />
           </Box>
@@ -146,7 +150,8 @@ export default function TicketConfirmationPage() {
                 justifyContent: "center",
               }}
             >
-              <Image src={user.src} alt="User icon" style={{ overflow: 'hidden', width: 20, height: 27 }} />
+              <Image src={user.src} alt="User icon" width={20} height={27} 
+              style={{ overflow: 'hidden', width: 20, height: 27 }} />
 
             <Typography sx={{ fontSize: "0.875rem", ml: 1, fontWeight: "bold" }}>
               {orderDetails.passengers} 

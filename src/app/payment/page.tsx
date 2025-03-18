@@ -23,6 +23,7 @@ import phonepeLogo from "../../../public/phone-pay.png";
 import gpayLogo from "../../../public/g-pay.png";
 import GppGoodIcon from '@mui/icons-material/GppGood';
 import Image from "next/image";
+import  "../../app/globals.css";
 
 
 export default function PaymentPage() {
@@ -107,14 +108,14 @@ export default function PaymentPage() {
             <Image
               src={sbiLogo.src}
               alt="SBI Logo"
-              style={{ width: 30, height: 30, marginRight: 10 }}
+              width={30} height={30} className="padir-10 " 
             />
             <Typography variant="body1">SBI Bank - 0100</Typography>
           </Box>
           <Image
               src={checkcircle.src}
-              alt="SBI Logo"
-              style={{ width: 20, height: 20,}}
+              alt="check"
+              width={20} height={20}  
             />
         </Box>
 
@@ -133,7 +134,7 @@ export default function PaymentPage() {
           <Image
             src={plus.src}
             alt="add"
-            style={{ width: 30, height: 20, marginRight: 10 }}
+            width={30} height={20}  className="padir-10 " 
           />
           <Typography sx={{color: '#00B8F6'}}>Bank A/C or Rupay Credit Card</Typography>
           
@@ -157,7 +158,7 @@ export default function PaymentPage() {
               mb: 1,
             }}
           >
-            <Box> <Image src={card.src} alt="card" style={{ width: 30, height: 20, marginRight: 10 }}/></Box>
+            <Box> <Image src={card.src} alt="card" width={30} height={20} className="padir-10 "  /></Box>
 
             <Box sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
 
@@ -166,18 +167,18 @@ export default function PaymentPage() {
                 <Image
                   src={mastercardLogo.src}
                   alt="Mastercard Logo"
-                  style={{ width: 25, height: 15, paddingTop:5}}
+                  width={25} height={15} 
                   
                 />
                 <Image
                   src={rupayLogo.src}
                   alt="RuPay Logo"
-                  style={{ width: 25, height: 18 , paddingTop:5}}
+                  width={25} height={18} 
                 />
                 <Image
                   src={visaLogo.src}
                   alt="Visa Logo"
-                  style={{ width: 25, height: 15 ,paddingTop:5}}
+                  width={25} height={15} 
                 />
                 <Typography variant="body1">& more </Typography>
               </Box>
@@ -199,7 +200,7 @@ export default function PaymentPage() {
               <Image
                 src={upiLogo.src}
                 alt="UPI Logo"
-                style={{ width: 30, height: 20, marginRight: 10 }}
+                width={30} height={20} className="padir-10 " 
               />
             </Box>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -208,17 +209,17 @@ export default function PaymentPage() {
                 <Image
                   src={paytmLogo.src}
                   alt="paytm Logo"
-                  style={{ width: 35, height: 20 }}
+                  width={35} height={20} 
                 />
                 <Image
                   src={phonepeLogo.src}
                   alt="PhonePe Logo"
-                  style={{ width: 20, height: 20 }}
+                  width={20} height={20} 
                 />
                 <Image
                   src={gpayLogo.src}
                   alt="GPay Logo"
-                  style={{ width: 20, height: 20 }}
+                  width={20} height={20} 
                 />
                 <Typography variant="body1"> & more</Typography>
               </Box>
@@ -241,7 +242,7 @@ export default function PaymentPage() {
               <Image
                 src={netBankingLogo.src}
                 alt="Net Banking Logo"
-                style={{ width: 30, height: 30, marginRight: 10 }}
+                width={30} height={30} className="padir-10 " 
               />
               <Box>
                 <Typography variant="body1">Net Banking</Typography>

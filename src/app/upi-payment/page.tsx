@@ -15,11 +15,12 @@ import BackspaceIcon from "@mui/icons-material/Backspace";
 import upiLogo from "../../../public/upi-logo.png";
 import error from "../../../public/error.png";
 import Image from "next/image";
+import  "../../app/globals.css";
 
 export default function UPIPaymentPage() {
   const router = useRouter();
-  const [pin, setPin] = useState<string[]>(new Array(6).fill("")); // Array to hold dots or empty strings
-  const [activeIndex, setActiveIndex] = useState<number>(0); // Tracks the current box to fill
+  const [pin, setPin] = useState<string[]>(new Array(6).fill("")); 
+  const [activeIndex, setActiveIndex] = useState<number>(0); 
 
   // Navigate back to payment page
   const handleBackClick = () => {
@@ -65,7 +66,8 @@ export default function UPIPaymentPage() {
           <Image
             src={upiLogo.src}
             alt="UPI Logo"
-            style={{ width: 60, height: 30, scale: 1.5 }}
+            width={60} height={30} className="scl"
+
           />
         </Box>
       </Box>
@@ -114,7 +116,7 @@ export default function UPIPaymentPage() {
             <Image
               src={error.src}
               alt=""
-              style={{ width: 50, height: 30, marginRight: 3, marginLeft: 3 }}
+              width={50} height={30} className="mary"
             />
             You are SENDING ₹15 from your account to SURAT SITILINK 
           </Typography>

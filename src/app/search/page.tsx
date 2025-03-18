@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Image from "next/image";
+import  "../../app/globals.css";
 
 export default function HomePage() {
   const router = useRouter();
@@ -144,7 +145,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/help-support.png" alt="Help" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/help-support.png" alt="Help Support" width={24} height={24}  className="search-icon" />}
             >
               Help & Support
             </Button>
@@ -159,7 +160,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/paytm-guide.png" alt="Guide" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/paytm-guide.png" alt="Paytm Guide" width={24} height={24}  className="search-icon" />}
             >
               Paytm Guide
             </Button>
@@ -174,7 +175,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/recent-payments.png" alt="Payments" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/recent-payments.png" alt="Recent Payments" width={24} height={24}  className="search-icon" />}
             >
               Recent Payments
             </Button>
@@ -189,7 +190,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/orders-booking.png" alt="Orders" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/orders-booking.png" alt="Orders & Bookings" width={24} height={24}  className="search-icon" />}
             >
               Orders & Bookings
             </Button>
@@ -229,7 +230,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/metro.png" alt="Metro" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/metro.png" alt="Metro" width={24} height={24}  className="search-icon" />}
             >
               Metro Tickets
             </Button>
@@ -244,7 +245,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/movie-tickets.png" alt="Movies" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/movie-tickets.png" alt="Movie" width={24} height={24}  className="search-icon" />}
             >
               Movie Tickets
             </Button>
@@ -259,7 +260,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/train-ticket.png" alt="Train" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/train-ticket.png" alt="Train" width={24} height={24}  className="search-icon" />}
             >
               Train Tickets
             </Button>
@@ -274,7 +275,8 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/cradit-score.png" alt="Credit" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+
+              startIcon={<Image src="/cradit-score.png" alt="credit" width={24} height={24}  className="search-icon" />}
             >
               Credit Score
             </Button>
@@ -289,7 +291,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/referral-code.png" alt="Referral" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/referral-code.png" alt="referral" width={24} height={24}  className="search-icon" />}
             >
               Referral Code
             </Button>
@@ -304,7 +306,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/fastag.png" alt="FASTag" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/fastag.png" alt="fastag" width={24} height={24}  className="search-icon" />}
             >
               FASTag Recharge
             </Button>
@@ -319,7 +321,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/flights.png" alt="Flights" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/flights.png" alt="flights" width={24} height={24}  className="search-icon" />}
             >
               Flights
             </Button>
@@ -334,7 +336,7 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/MF-SIP.png" alt="MF SIP" style={{ width: 24, height: 24, marginBottom: 10 }} />}
+              startIcon={<Image src="/MF-SIP.png" alt="mf" width={24} height={24}  className="search-icon" />}
             >
               Daily MF SIP
             </Button>
