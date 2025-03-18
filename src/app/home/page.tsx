@@ -1,13 +1,14 @@
-
 "use client";
 
 import { Box, Typography, Button, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { setOrderId } from "../../store/ticketSlice"; 
+import { setOrderId } from "../../store/ticketSlice";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import Image from "next/image";
+import "../../app/globals.css"; // Import global.css
 
 export default function HomePage() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function HomePage() {
 
   const handleScanPayClick = () => {
     const orderId = generateRandomOrderId(11);
-    dispatch(setOrderId(orderId)); // Set orderId in Redux
+    dispatch(setOrderId(orderId));
     router.push("/search");
   };
 
@@ -106,7 +107,7 @@ export default function HomePage() {
         <Grid item xs={3}>
           <Button
             fullWidth
-            onClick={handleScanPayClick} // Updated to initiate ticket flow
+            onClick={handleScanPayClick}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -123,7 +124,13 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ mb: 0 }}>
-              <img src="/scan-pay.png" alt="Scan & Pay" style={{ width: 40, height: 40 }} />
+              <Image
+                src="/scan-pay.png"
+                alt="Scan & Pay"
+                width={40}
+                height={40}
+                className="icon-img"
+              />
             </Box>
             Scan & Pay
           </Button>
@@ -147,10 +154,12 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ mb: 0 }}>
-              <img
+              <Image
                 src="/to-mobile-connect.png"
                 alt="To Mobile or Contact"
-                style={{ width: 40, height: 40 }}
+                width={40}
+                height={40}
+                className="icon-img"
               />
             </Box>
             To Mobile Contact
@@ -175,7 +184,13 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ mb: 0 }}>
-              <img src="/to-bank-ac.png" alt="To Bank A/c" style={{ width: 40, height: 40 }} />
+              <Image
+                src="/to-bank-ac.png"
+                alt="To Bank A/c"
+                width={40}
+                height={40}
+                className="icon-img"
+              />
             </Box>
             To Bank A/c or UPI ID
           </Button>
@@ -199,7 +214,13 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ mb: 0 }}>
-              <img src="/to-self-ac.png" alt="To Self A/c" style={{ width: 40, height: 40 }} />
+              <Image
+                src="/to-self-ac.png"
+                alt="To Self A/c"
+                width={40}
+                height={40}
+                className="icon-img"
+              />
             </Box>
             To Self A/c
           </Button>
@@ -210,20 +231,24 @@ export default function HomePage() {
       <Grid container spacing={1} sx={{ mb: 2, backgroundColor: "#f2f6f9", p: 1 }}>
         <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
           <Button fullWidth sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}>
-            <img
+            <Image
               src="/balance-history.png"
               alt="Balance & History"
-              style={{ width: 22, height: 28, marginRight: 8 }}
+              width={22}
+              height={28}
+              className="button-icon"
             />
             Check Balance & History
           </Button>
         </Grid>
         <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
           <Button fullWidth sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}>
-            <img
+            <Image
               src="/Recive money.png"
               alt="Receive Money"
-              style={{ width: 22, height: 28, marginRight: 8 }}
+              width={22}
+              height={28}
+              className="button-icon"
             />
             Receive money QR
           </Button>
@@ -258,10 +283,12 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ color: "#022A72", backgroundColor: "white" }}>
-              <img
+              <Image
                 src="/mobile-recharge.png"
                 alt="Mobile Recharge"
-                style={{ width: 24, height: 28 }}
+                width={24}
+                height={28}
+                className="icon-img"
               />
             </Box>
             Mobile Recharge
@@ -283,7 +310,13 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ color: "#022A72", backgroundColor: "white", pb: 0.8 }}>
-              <img src="/cradit-card.png" alt="Credit Card" style={{ width: 32, height: 22 }} />
+              <Image
+                src="/cradit-card.png"
+                alt="Credit Card"
+                width={32}
+                height={22}
+                className="icon-img credit-card"
+              />
             </Box>
             Credit Card
           </Button>
@@ -304,10 +337,12 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ color: "#022A72", backgroundColor: "white", pb: 0.3 }}>
-              <img
+              <Image
                 src="/Electricity-bill.png"
                 alt="Electricity"
-                style={{ width: 26, height: 26 }}
+                width={26}
+                height={26}
+                className="icon-img"
               />
             </Box>
             Electricity
@@ -329,7 +364,13 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ color: "#022A72", backgroundColor: "white", pb: 0.2 }}>
-              <img src="/fastag.png" alt="FASTag" style={{ width: 32, height: 26 }} />
+              <Image
+                src="/fastag.png"
+                alt="FASTag"
+                width={32}
+                height={26}
+                className="icon-img"
+              />
             </Box>
             FASTag Recharge
           </Button>
@@ -362,7 +403,13 @@ export default function HomePage() {
               }}
             >
               <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-                <img src="/ploan.png" alt="Personal Loan" style={{ width: 24, height: 24 }} />
+                <Image
+                  src="/ploan.png"
+                  alt="Personal Loan"
+                  width={24}
+                  height={24}
+                  className="icon-img"
+                />
               </Box>
               Personal Loan
             </Button>
@@ -383,7 +430,13 @@ export default function HomePage() {
               }}
             >
               <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-                <img src="/cradit-card-2.png" alt="Credit Card" style={{ width: 32, height: 22 }} />
+                <Image
+                  src="/cradit-card-2.png"
+                  alt="Credit Card"
+                  width={32}
+                  height={22}
+                  className="icon-img credit-card"
+                />
               </Box>
               Credit Card
             </Button>
@@ -404,7 +457,13 @@ export default function HomePage() {
               }}
             >
               <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-                <img src="/paytm-money.png" alt="Paytm Money" style={{ width: 24, height: 24 }} />
+                <Image
+                  src="/paytm-money.png"
+                  alt="Paytm Money"
+                  width={24}
+                  height={24}
+                  className="icon-img"
+                />
               </Box>
               Paytm Money
             </Button>
@@ -425,7 +484,13 @@ export default function HomePage() {
               }}
             >
               <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-                <img src="/sip.png" alt="SIP" style={{ width: 24, height: 24 }} />
+                <Image
+                  src="/sip.png"
+                  alt="SIP"
+                  width={24}
+                  height={24}
+                  className="icon-img"
+                />
               </Box>
               SIP @ ₹250
             </Button>
@@ -446,7 +511,13 @@ export default function HomePage() {
               }}
             >
               <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-                <img src="/flight-bus.png" alt="Travel" style={{ width: 24, height: 24 }} />
+                <Image
+                  src="/flight-bus.png"
+                  alt="Travel"
+                  width={24}
+                  height={24}
+                  className="icon-img"
+                />
               </Box>
               Travel
             </Button>
@@ -467,7 +538,13 @@ export default function HomePage() {
               }}
             >
               <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-                <img src="/24k.png" alt="Movies" style={{ width: 24, height: 24 }} />
+                <Image
+                  src="/24k.png"
+                  alt="Buy Gold"
+                  width={24}
+                  height={24}
+                  className="icon-img"
+                />
               </Box>
               Buy Gold
             </Button>
@@ -488,7 +565,13 @@ export default function HomePage() {
               }}
             >
               <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-                <img src="/movies.png" alt="Movies" style={{ width: 24, height: 24 }} />
+                <Image
+                  src="/movies.png"
+                  alt="Movies"
+                  width={24}
+                  height={24}
+                  className="icon-img"
+                />
               </Box>
               Movies
             </Button>
@@ -509,7 +592,13 @@ export default function HomePage() {
               }}
             >
               <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-                <img src="/all-services.png" alt="All Services" style={{ width: 24, height: 24 }} />
+                <Image
+                  src="/all-services.png"
+                  alt="All Services"
+                  width={24}
+                  height={24}
+                  className="icon-img"
+                />
               </Box>
               All Services
             </Button>
@@ -542,7 +631,13 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-              <img src="/check-credit.png" alt="Credit Score" style={{ width: 24, height: 24 }} />
+              <Image
+                src="/check-credit.png"
+                alt="Credit Score"
+                width={24}
+                height={24}
+                className="icon-img"
+              />
             </Box>
             Credit Score
           </Button>
@@ -563,7 +658,13 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-              <img src="/sip.png" alt="Mutual Fund" style={{ width: 24, height: 24 }} />
+              <Image
+                src="/sip.png"
+                alt="Mutual Fund"
+                width={24}
+                height={24}
+                className="icon-img"
+              />
             </Box>
             Mutual Fund
           </Button>
@@ -584,7 +685,13 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-              <img src="/ask-ai.png" alt="Ask AI" style={{ width: 24, height: 24 }} />
+              <Image
+                src="/ask-ai.png"
+                alt="Ask AI"
+                width={24}
+                height={24}
+                className="icon-img"
+              />
             </Box>
             Ask AI
           </Button>
@@ -605,7 +712,13 @@ export default function HomePage() {
             }}
           >
             <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
-              <img src="/insurance.png" alt="Insurance" style={{ width: 25, height: 24 }} />
+              <Image
+                src="/insurance.png"
+                alt="Insurance"
+                width={25}
+                height={24}
+                className="icon-img"
+              />
             </Box>
             Insurance
           </Button>
@@ -626,7 +739,15 @@ export default function HomePage() {
         <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
           <Button
             fullWidth
-            startIcon={<img src="/points&gift.png" alt="Points" style={{ width: 20, height: 25 }} />}
+            startIcon={
+              <Image
+                src="/points&gift.png"
+                alt="Points"
+                width={20}
+                height={25}
+                className="button-icon"
+              />
+            }
             sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" }, textTransform: "none" }}
           >
             Points & Gift Cards
@@ -656,7 +777,13 @@ export default function HomePage() {
             justifyContent: "center",
           }}
         >
-          <img src="/scan-pay.png" alt="Scan Any QR" style={{ width: 20, height: 20, marginRight: 8 }} />
+          <Image
+            src="/scan-pay.png"
+            alt="Scan Any QR"
+            width={20}
+            height={20}
+            className="footer-icon"
+          />
           Scan Any QR
         </Typography>
       </Box>

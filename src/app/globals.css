@@ -1,12 +1,5 @@
-
 body {
-  
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.search-icon  {
-  margin-left: 10px;
-  margin-bottom: 10px;
 }
 
 .padir-10 {
@@ -17,15 +10,32 @@ p {
   color: black;
 }
 
-.scl{
+.scl {
   scale: 1.5;
 }
-.mary{
+
+.mary {
   margin-left: 3px;
   margin-right: 3px;
 }
 
-.qr{
+.qr {
   margin-left: 80px;
   scale: 1.5;
+}
+
+
+.icon-img {
+  margin-bottom: 4px;
+}
+
+.button-icon {
+  margin-right: 8px; 
+}
+.credit-card {
+  padding-bottom: 8px; 
+}
+
+.footer-icon {
+  margin-right: 8px;
 }
