@@ -36,7 +36,7 @@ export const store = configureStore({
       serializableCheck: false,
     }).concat(localStorageMiddleware),
   preloadedState: {
-    ticket: loadState(), // Load ticket state on store initialization
+    ticket: loadState(), 
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
