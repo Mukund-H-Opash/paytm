@@ -1,7 +1,9 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Box,
   Typography,
@@ -10,66 +12,90 @@ import {
 } from "@mui/material";
 import ArrowForward from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import QRCode from "react-qr-code"; 
+import QRCode from "react-qr-code";
+import { RootState } from "../../store/store";
+import {
+  setFrom,
+  setTo,
+  setPrice,
+  setPassengers,
+  setTicketId,
+  setIssuedAt,
+  setTransactionId,
+} from "../../store/ticketSlice";
 import Image from "next/image";
 
 export default function QRTicketsPage() {
   const router = useRouter();
-  const [orderDetails, setOrderDetails] = useState<{ from: string; to: string; price: string }>({ from: '', to: '', price: '' });
-  const [countdown, setCountdown] = useState<string>("01:40:00"); 
-  const [ticketId, setTicketId] = useState<string>(generateRandomTicketId(10)); 
-  const [orderId, setOrderId] = useState<string>(generateRandomOrderId(11));
-  const [orderItemId, setOrderItemId] = useState<string>(generateRandomOrderId(8));
-  const [ticketType, setTicketType] = useState<string>("Adult");
-
-  // Generate random 10-digit ticket ID
-  function generateRandomTicketId(length: number): string {
-    return Math.floor(Math.random() * 9e9 + 1e9).toString().slice(0, length);
-  }
-
-  // Generate random 11-digit order ID
-  function generateRandomOrderId(length: number): string {
-    return Math.floor(Math.random() * 9e10 + 1e10).toString().slice(0, length);
-  }
+  const dispatch = useDispatch();
+  const { from, to, price, passengers, ticketId, issuedAt, transactionId } = useSelector(
+    (state: RootState) => state.ticket
+  );
+  const [countdown, setCountdown] = useState<string>("02:00:00");
+  const [isLoading, setIsLoading] = useState(true); // New loading state
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const from = urlParams.get("from") || "Adajan";
-    const to = urlParams.get("to") || "Sanjeev Ku";
-    const price = urlParams.get("price") || "4";
+    console.log("Initial Redux State:", { from, to, price, passengers, ticketId, issuedAt, transactionId });
 
-    setOrderDetails({ from, to, price });
+    // Restore from localStorage if Redux is empty
+    if (!from && !to && !price && !passengers && !ticketId && !issuedAt) {
+      const storedTicket = localStorage.getItem("activeTicket");
+      console.log("Stored Ticket from localStorage:", storedTicket);
 
-    // Start countdown timer (1 hour 30 minutes = 5400 seconds)
-    let timeLeft = 5400;
-    const timer = setInterval(() => {
-      if (timeLeft > 0) {
-        timeLeft -= 1;
-        const hours = Math.floor(timeLeft / 3600);
-        const minutes = Math.floor((timeLeft % 3600) / 60);
-        const seconds = timeLeft % 60;
-        setCountdown(
-          `${hours.toString().padStart(2, "0")}:${minutes
-            .toString()
-            .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
-        );
+      if (storedTicket) {
+        const ticket = JSON.parse(storedTicket);
+        dispatch(setFrom(ticket.from || ""));
+        dispatch(setTo(ticket.to || ""));
+        dispatch(setPrice(ticket.price || 0));
+        dispatch(setPassengers(ticket.passengers || 0));
+        dispatch(setTicketId(ticket.ticketId || ""));
+        dispatch(setIssuedAt(new Date(ticket.issuedAt).getTime() || 0));
+        dispatch(setTransactionId(ticket.transactionId || ""));
+        console.log("Dispatched Ticket to Redux:", ticket);
       } else {
-        clearInterval(timer);
+        console.log("No activeTicket found, redirecting to /ticket-booking");
+        router.push("/ticket-booking");
+        return;
       }
-    }, 1000);
+    }
 
+    // Set loading to false after restoration attempt
+    setIsLoading(false);
+
+    const effectiveIssuedAt = issuedAt || Date.now();
+    const expiresAt = effectiveIssuedAt + 7200 * 1000;
+    const updateCountdown = () => {
+      const now = Date.now();
+      const timeLeft = Math.max(0, Math.floor((expiresAt - now) / 1000));
+      const hours = Math.floor(timeLeft / 3600);
+      const minutes = Math.floor((timeLeft % 3600) / 60);
+      const seconds = timeLeft % 60;
+      setCountdown(
+        `${hours.toString().padStart(2, "0")}:${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
+      );
+      if (timeLeft <= 0) clearInterval(timer);
+    };
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [from, to, price, passengers, ticketId, issuedAt, transactionId, router, dispatch]);
 
-  const handleBackClick = () => {
-    router.push("/ticket");
-  };
-
-  if (!orderDetails) {
+  // Show loading until restoration is complete
+  if (isLoading) {
     return <Typography>Loading...</Typography>;
   }
 
-  const issuedTime = new Date().toLocaleString("en-US", {
+  // Redirect only if no data after restoration
+  if (!from || !to || !price || !passengers || !ticketId || !issuedAt) {
+    console.log("Redux still empty after restoration, redirecting to /ticket-booking");
+    router.push("/ticket-booking");
+    return null;
+  }
+
+  const issuedTime = new Date(issuedAt).toLocaleString("en-US", {
     day: "2-digit",
     month: "short",
     year: "numeric",
@@ -78,45 +104,49 @@ export default function QRTicketsPage() {
     hour12: true,
   });
 
+  const qrValue = JSON.stringify({
+    ticketId,
+    from,
+    to,
+    passengers,
+    price,
+    issuedAt,
+    transactionId,
+  });
+
   return (
-    <Box sx={{ backgroundColor: "#ffffff", padding: 2, }}>
-      {/* Header */}
+    <Box sx={{ backgroundColor: "#ffffff", padding: 2 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-        <IconButton onClick={handleBackClick} sx={{ color: "#000000" }}>
+        <IconButton onClick={() => router.push("/ticket-confirmation")} sx={{ color: "#000000" }}>
           <ArrowBackIcon />
         </IconButton>
-        <Image src="/scan-pay.png" alt="Logo"   height= {24} width= {24} />
+        <Image src="/scan-pay.png" alt="Logo" height={24} width={24} />
         <Typography variant="h6" sx={{ fontSize: "1rem" }}>
-          1 QR Ticket
+          {passengers} QR Ticket{passengers > 1 ? "s" : ""}
         </Typography>
         <Button sx={{ color: "#0288d1", textTransform: "none" }}>Help</Button>
-        
       </Box>
-
-      {/* From and To */}
-      
-        <Typography sx={{ fontSize: "1.5rem", mb: 1  ,fontWeight: "bold" ,p:1, justifyContent: "center"}}>
-          {orderDetails.from}... <ArrowForward sx={{ fontSize: "16px", mx: 1 }} /> {orderDetails.to}..
+      <Typography
+        sx={{ fontSize: "1.5rem", mb: 1, fontWeight: "bold", p: 1, textAlign: "center" }}
+      >
+        {from.length > 10 ? `${from.slice(0, 10)}...` : from}{" "}
+        <ArrowForward sx={{ fontSize: "16px", mx: 1 }} />{" "}
+        {to.length > 10 ? `${to.slice(0, 10)}...` : to}
+      </Typography>
+      <Box sx={{ display: "flex", textAlign: "center", mb: 2, justifyContent: "center" }}>
+        <Typography sx={{ fontSize: "0.9rem", mb: 2 }}>
+          Scan this QR at entry & exit points
         </Typography>
-      
-        <Box sx={{display: "flex", textAlign: "center", mb: 2 , justifyContent: "center"}} >
-          <Typography sx={{ fontSize: "0.9rem", mb: 2 }}>
-            scan this Qr at entry & exit points 
-          </Typography>
-        </Box>
-
-      {/* QR Code */}
+      </Box>
       <Box sx={{ textAlign: "center", mb: 2 }}>
         <QRCode
-          value={ticketId} 
+          value={qrValue}
           size={250}
           fgColor="#000000"
           bgColor="#ffffff"
           level="H"
         />
       </Box>
-
-      {/* Countdown */}
       <Box
         sx={{
           backgroundColor: "#fff",
@@ -126,42 +156,37 @@ export default function QRTicketsPage() {
           textAlign: "center",
         }}
       >
-          <Typography sx={{ fontSize: "0.875rem", justifyItems: "center" }}>
-            Your ticket is valid for 
-          </Typography>
-          <Typography sx={{ fontSize: "2.25rem", justifyItems: "center" ,fontWeight: "bold",}}>
+        <Typography sx={{ fontSize: "0.875rem", justifyItems: "center" }}>
+          Your ticket is valid for
+        </Typography>
+        <Typography sx={{ fontSize: "2.25rem", justifyItems: "center", fontWeight: "bold" }}>
           {countdown}
-          </Typography>
-          <Typography sx={{ fontSize: "0.675rem", justifyItems: "center" }}>
-          HOURS  MINUTES  SECONDS
-          </Typography>
-
+        </Typography>
+        <Typography sx={{ fontSize: "0.675rem", justifyItems: "center" }}>
+          HOURS MINUTES SECONDS
+        </Typography>
       </Box>
-
-      {/* Ticket Details */}
       <Box sx={{ mb: 2, border: "1px solid #e0e0e0", borderRadius: 2, padding: 1 }}>
         <Typography sx={{ fontSize: "0.85rem", mb: 1 }}>Ticket Details</Typography>
-
         <Box sx={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #e0e0e0", p: 1 }}>
           <Typography sx={{ fontSize: "0.75rem" }}>Issued On:</Typography>
           <Typography sx={{ fontSize: "0.75rem" }}>{issuedTime}</Typography>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #e0e0e0", p: 1 }}>
           <Typography sx={{ fontSize: "0.75rem" }}>Order ID:</Typography>
-          <Typography sx={{ fontSize: "0.75rem" }}>{orderId}</Typography>
+          <Typography sx={{ fontSize: "0.75rem" }}>{ticketId}</Typography>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #e0e0e0", p: 1 }}>
-          <Typography sx={{ fontSize: "0.75rem" }}>Order Item ID:</Typography>
-          <Typography sx={{ fontSize: "0.75rem" }}>{orderItemId}</Typography>
+          <Typography sx={{ fontSize: "0.75rem" }}>Transaction ID:</Typography>
+          <Typography sx={{ fontSize: "0.75rem" }}>{transactionId}</Typography>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-between", p: 1, pb: 0 }}>
           <Typography sx={{ fontSize: "0.75rem" }}>Ticket Type:</Typography>
-          <Typography sx={{ fontSize: "0.75rem" }}> 1 {ticketType}</Typography>
+          <Typography sx={{ fontSize: "0.75rem" }}>
+            {passengers} Adult{passengers > 1 ? "s" : ""}
+          </Typography>
         </Box>
       </Box>
-
-    
-      
     </Box>
   );
 }

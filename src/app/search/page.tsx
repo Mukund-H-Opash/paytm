@@ -3,30 +3,37 @@
 import { Box, Typography, Button, Grid, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store"; // Updated path as per your input
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Image from "next/image";
-import  "../../app/globals.css";
+import "../../app/globals.css";
 
-export default function HomePage() {
+export default function SearchPage() {
   const router = useRouter();
-  const [searchValue, setSearchValue] = useState(""); // State for search input
+  const orderId = useSelector((state: RootState) => state.ticket.orderId); // Read orderId from ticketSlice
+  const [searchValue, setSearchValue] = useState(""); // Local state for search input
 
+  // Removed strict orderId check to allow new users to use SearchPage
   useEffect(() => {
-    // Router is available here
-  }, []);
+    // Optional: Log orderId for debugging, but no redirect
+    console.log("Current orderId:", orderId);
+  }, [orderId]);
 
   const handleSearchClick = () => {
-    router.push('/sitilink');
+    if (searchValue.trim()) {
+      router.push("/sitilink");
+    }
   };
 
   const handleBackClick = () => {
-    router.push("/home");  
+    router.push("/home");
   };
 
   const handleSearchSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter' && searchValue.trim()) {
-      router.push('/sitilink');
+    if (event.key === "Enter" && searchValue.trim()) {
+      router.push("/sitilink");
     }
   };
 
@@ -39,13 +46,9 @@ export default function HomePage() {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-        <ArrowBackIcon 
-          sx={{ 
-            color: "#757575", 
-            cursor: "pointer", 
-            mr: 2
-          }} 
-          onClick={handleBackClick} 
+        <ArrowBackIcon
+          sx={{ color: "#757575", cursor: "pointer", mr: 2 }}
+          onClick={handleBackClick}
         />
         {/* Search Bar */}
         <Box
@@ -59,6 +62,7 @@ export default function HomePage() {
             display: "flex",
             alignItems: "center",
             flex: 1,
+            position: "relative", // For dropdown positioning
           }}
         >
           <SearchIcon sx={{ color: "#757575", mr: 1 }} />
@@ -68,19 +72,19 @@ export default function HomePage() {
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             onKeyDown={handleSearchSubmit}
-            sx={{ 
-              flex: 1, 
-              '& .MuiInputBase-input': { 
-                color: "#757575", 
+            sx={{
+              flex: 1,
+              "& .MuiInputBase-input": {
+                color: "#757575",
                 fontSize: "0.875rem",
                 padding: 0,
               },
-              '& .MuiInput-underline:before': { borderBottom: 'none' },
-              '& .MuiInput-underline:after': { borderBottom: 'none' },
-              '& .MuiInput-underline:hover:not(.Mui-disabled):before': { borderBottom: 'none' },
+              "& .MuiInput-underline:before": { borderBottom: "none" },
+              "& .MuiInput-underline:after": { borderBottom: "none" },
+              "& .MuiInput-underline:hover:not(.Mui-disabled):before": { borderBottom: "none" },
             }}
           />
-          {/* Suggestion */}
+          {/* Suggestion Dropdown */}
           {searchValue.toLowerCase().includes("surat") && (
             <Box
               sx={{
@@ -105,7 +109,7 @@ export default function HomePage() {
                 }}
                 onClick={handleSearchClick}
               >
-                Surat Sitilinc
+                Surat Sitilink {/* Fixed typo from "Sitilinc" to "Sitilink" */}
               </Typography>
             </Box>
           )}
@@ -113,27 +117,20 @@ export default function HomePage() {
       </Box>
 
       {/* Get Help Section */}
-      <Box
-        sx={{
-          backgroundColor: "#ffffff",
-          borderRadius: 1,
-          padding: 1,
-          mb: 2,
-        }}
-      >
+      <Box sx={{ backgroundColor: "#ffffff", borderRadius: 1, padding: 1, mb: 2 }}>
         <Typography
           variant="h6"
-          sx={{ 
-            color: "#333", 
-            fontSize: "0.9rem", 
-            mb: 1, 
+          sx={{
+            color: "#333",
+            fontSize: "0.9rem",
+            mb: 1,
             backgroundColor: "#e0f7fa",
             borderRadius: 1,
+            p: 1,
           }}
         >
           GET HELP
         </Typography>
-
         <Grid container spacing={2}>
           <Grid item xs={3}>
             <Button
@@ -145,7 +142,15 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/help-support.png" alt="Help Support" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image
+                  src="/help-support.png"
+                  alt="Help Support"
+                  width={24}
+                  height={24}
+                  className="search-icon"
+                />
+              }
             >
               Help & Support
             </Button>
@@ -160,7 +165,15 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/paytm-guide.png" alt="Paytm Guide" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image
+                  src="/paytm-guide.png"
+                  alt="Paytm Guide"
+                  width={24}
+                  height={24}
+                  className="search-icon"
+                />
+              }
             >
               Paytm Guide
             </Button>
@@ -175,7 +188,15 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/recent-payments.png" alt="Recent Payments" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image
+                  src="/recent-payments.png"
+                  alt="Recent Payments"
+                  width={24}
+                  height={24}
+                  className="search-icon"
+                />
+              }
             >
               Recent Payments
             </Button>
@@ -190,7 +211,15 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/orders-booking.png" alt="Orders & Bookings" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image
+                  src="/orders-booking.png"
+                  alt="Orders & Bookings"
+                  width={24}
+                  height={24}
+                  className="search-icon"
+                />
+              }
             >
               Orders & Bookings
             </Button>
@@ -199,22 +228,16 @@ export default function HomePage() {
       </Box>
 
       {/* Popular Services Section */}
-      <Box
-        sx={{
-          backgroundColor: "#ffffff",
-          borderRadius: 1,
-          padding: 1,
-          mb: 2,
-        }}
-      >
+      <Box sx={{ backgroundColor: "#ffffff", borderRadius: 1, padding: 1, mb: 2 }}>
         <Typography
           variant="h6"
-          sx={{  
-            color: "#333", 
-            fontSize: "0.9rem", 
-            mb: 1, 
+          sx={{
+            color: "#333",
+            fontSize: "0.9rem",
+            mb: 1,
             backgroundColor: "#e0f7fa",
-            borderRadius: 1, 
+            borderRadius: 1,
+            p: 1,
           }}
         >
           POPULAR SERVICES
@@ -230,7 +253,9 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/metro.png" alt="Metro" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image src="/metro.png" alt="Metro" width={24} height={24} className="search-icon" />
+              }
             >
               Metro Tickets
             </Button>
@@ -245,7 +270,15 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/movie-tickets.png" alt="Movie" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image
+                  src="/movie-tickets.png"
+                  alt="Movie"
+                  width={24}
+                  height={24}
+                  className="search-icon"
+                />
+              }
             >
               Movie Tickets
             </Button>
@@ -260,7 +293,15 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/train-ticket.png" alt="Train" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image
+                  src="/train-ticket.png"
+                  alt="Train"
+                  width={24}
+                  height={24}
+                  className="search-icon"
+                />
+              }
             >
               Train Tickets
             </Button>
@@ -275,8 +316,15 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-
-              startIcon={<Image src="/cradit-score.png" alt="credit" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image
+                  src="/cradit-score.png"
+                  alt="credit"
+                  width={24}
+                  height={24}
+                  className="search-icon"
+                />
+              }
             >
               Credit Score
             </Button>
@@ -291,7 +339,15 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/referral-code.png" alt="referral" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image
+                  src="/referral-code.png"
+                  alt="referral"
+                  width={24}
+                  height={24}
+                  className="search-icon"
+                />
+              }
             >
               Referral Code
             </Button>
@@ -306,7 +362,9 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/fastag.png" alt="fastag" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image src="/fastag.png" alt="fastag" width={24} height={24} className="search-icon" />
+              }
             >
               FASTag Recharge
             </Button>
@@ -321,7 +379,15 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/flights.png" alt="flights" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image
+                  src="/flights.png"
+                  alt="flights"
+                  width={24}
+                  height={24}
+                  className="search-icon"
+                />
+              }
             >
               Flights
             </Button>
@@ -336,7 +402,9 @@ export default function HomePage() {
                 textTransform: "none",
                 "&:hover": { backgroundColor: "rgba(2, 136, 209, 0.1)" },
               }}
-              startIcon={<Image src="/MF-SIP.png" alt="mf" width={24} height={24}  className="search-icon" />}
+              startIcon={
+                <Image src="/MF-SIP.png" alt="mf" width={24} height={24} className="search-icon" />
+              }
             >
               Daily MF SIP
             </Button>
@@ -345,61 +413,68 @@ export default function HomePage() {
       </Box>
 
       {/* Search History Section */}
-      <Box
-        sx={{
-          backgroundColor: "#ffffff",
-          borderRadius: 1,
-          padding: 1,
-          mb: 2,
-        }}
-      >
+      <Box sx={{ backgroundColor: "#ffffff", borderRadius: 1, padding: 1, mb: 2 }}>
         <Typography
           variant="h6"
-          sx={{ color: "#333", fontSize: "0.9rem", mb: 1, display: "flex", justifyContent: "space-between" }}
+          sx={{
+            color: "#333",
+            fontSize: "0.9rem",
+            mb: 1,
+            display: "flex",
+            justifyContent: "space-between",
+          }}
         >
           SEARCH HISTORY
-          <Typography
-            sx={{ color: "#0288d1", fontSize: "0.875rem", cursor: "pointer" }}
-          >
+          <Typography sx={{ color: "#0288d1", fontSize: "0.875rem", cursor: "pointer" }}>
             Clear All
           </Typography>
         </Typography>
-        <Box sx={{ display: "flex", flexWrap: "wrap" ,flexDirection: "column", justifyContent: "space-between" }}>
-          <Typography 
-            sx={{ 
-              color: "#000000", 
-              mb: 1, 
-              fontSize: "0.875rem", 
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography
+            sx={{
+              color: "#000000",
+              mb: 1,
+              fontSize: "0.875rem",
               borderBottom: "1px solid #e0e0e0",
               display: "inline-block",
-            }} 
+              cursor: "pointer",
+            }}
             onClick={handleSearchClick}
           >
-            Surat Sitilinc
+            Surat Sitilink
           </Typography>
-          <Typography 
-            sx={{ 
-              color: "#000000", 
-              mb: 1, 
-              fontSize: "0.875rem", 
+          <Typography
+            sx={{
+              color: "#000000",
+              mb: 1,
+              fontSize: "0.875rem",
               borderBottom: "1px solid #e0e0e0",
               display: "inline-block",
-            }} 
+              cursor: "pointer",
+            }}
             onClick={handleSearchClick}
           >
-            Surat Sitilinc
+            Surat Sitilink
           </Typography>
-          <Typography 
-            sx={{ 
-              color: "#000000", 
-              mb: 1, 
-              fontSize: "0.875rem", 
+          <Typography
+            sx={{
+              color: "#000000",
+              mb: 1,
+              fontSize: "0.875rem",
               borderBottom: "1px solid #e0e0e0",
               display: "inline-block",
-            }} 
+              cursor: "pointer",
+            }}
             onClick={handleSearchClick}
           >
-            Surat Sitilinc
+            Surat Sitilink
           </Typography>
         </Box>
       </Box>

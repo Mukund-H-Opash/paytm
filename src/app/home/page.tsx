@@ -1,26 +1,34 @@
+
 "use client";
 
 import { Box, Typography, Button, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
-// Keep the MUI icons we still need
+import { useDispatch } from "react-redux";
+import { setOrderId } from "../../store/ticketSlice"; 
 import SearchIcon from "@mui/icons-material/Search";
-import NotificationsIcon from "@mui/icons-material/Notifications"
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
 export default function HomePage() {
   const router = useRouter();
+  const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const generateRandomOrderId = (length: number): string => {
+    return Math.floor(Math.random() * 9e10 + 1e10).toString().slice(0, length);
+  };
+
+  const handleScanPayClick = () => {
+    const orderId = generateRandomOrderId(11);
+    dispatch(setOrderId(orderId)); // Set orderId in Redux
+    router.push("/search");
+  };
+
+  const handleSearchClick = () => {
     router.push("/search");
   };
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "#ffffff",
-        fontFamily: "Arial, sans-serif", 
-      }}
-    >
+    <Box sx={{ backgroundColor: "#ffffff", fontFamily: "Arial, sans-serif" }}>
       {/* Header Section */}
       <Box
         sx={{
@@ -67,10 +75,10 @@ export default function HomePage() {
             Create New UPI ID
           </Button>
         </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1,scale:1. }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1, scale: 1 }}>
           <SearchIcon
             sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}
-            onClick={handleClick}
+            onClick={handleSearchClick}
           />
           <NotificationsIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
         </Box>
@@ -95,10 +103,10 @@ export default function HomePage() {
 
       {/* Payment Options */}
       <Grid container spacing={1} sx={{ mb: 2, justifyContent: "center" }}>
-        {/* Button 1: Scan & Pay */}
         <Grid item xs={3}>
           <Button
             fullWidth
+            onClick={handleScanPayClick} // Updated to initiate ticket flow
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -114,15 +122,12 @@ export default function HomePage() {
               padding: 0,
             }}
           >
-            <Box sx={{  mb: 0 }}>
-          
+            <Box sx={{ mb: 0 }}>
               <img src="/scan-pay.png" alt="Scan & Pay" style={{ width: 40, height: 40 }} />
             </Box>
             Scan & Pay
           </Button>
         </Grid>
-
-        {/* Button 2: To Mobile or Contact */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -141,7 +146,7 @@ export default function HomePage() {
               padding: 0,
             }}
           >
-            <Box sx={{  mb: 0 }}>
+            <Box sx={{ mb: 0 }}>
               <img
                 src="/to-mobile-connect.png"
                 alt="To Mobile or Contact"
@@ -151,8 +156,6 @@ export default function HomePage() {
             To Mobile Contact
           </Button>
         </Grid>
-
-        {/* Button 3: To Bank A/c or UPI ID */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -171,14 +174,12 @@ export default function HomePage() {
               padding: 0,
             }}
           >
-            <Box sx={{  mb: 0 }}>
+            <Box sx={{ mb: 0 }}>
               <img src="/to-bank-ac.png" alt="To Bank A/c" style={{ width: 40, height: 40 }} />
             </Box>
             To Bank A/c or UPI ID
           </Button>
         </Grid>
-
-        {/* Button 4: To Self A/c */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -197,7 +198,7 @@ export default function HomePage() {
               padding: 0,
             }}
           >
-            <Box sx={{  mb: 0 }}>
+            <Box sx={{ mb: 0 }}>
               <img src="/to-self-ac.png" alt="To Self A/c" style={{ width: 40, height: 40 }} />
             </Box>
             To Self A/c
@@ -206,16 +207,9 @@ export default function HomePage() {
       </Grid>
 
       {/* Balance & QR */}
-      <Grid
-        container
-        spacing={1}
-        sx={{ mb: 2, backgroundColor: "#f2f6f9", p: 1 }}
-      >
+      <Grid container spacing={1} sx={{ mb: 2, backgroundColor: "#f2f6f9", p: 1 }}>
         <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
-          <Button
-            fullWidth
-            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}
-          >
+          <Button fullWidth sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}>
             <img
               src="/balance-history.png"
               alt="Balance & History"
@@ -225,10 +219,7 @@ export default function HomePage() {
           </Button>
         </Grid>
         <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
-          <Button
-            fullWidth
-            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}
-          >
+          <Button fullWidth sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" } }}>
             <img
               src="/Recive money.png"
               alt="Receive Money"
@@ -250,9 +241,7 @@ export default function HomePage() {
           View all
         </span>
       </Typography>
-
       <Grid container spacing={1} sx={{ mb: 2, justifyContent: "center", padding: 1 }}>
-        {/* Mobile Recharge Button */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -264,18 +253,11 @@ export default function HomePage() {
               textTransform: "none",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
-              "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)",
-              },
+              "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
               padding: 0,
             }}
           >
-            <Box
-              sx={{
-                color: "#022A72",
-                backgroundColor: "white",
-              }}
-            >
+            <Box sx={{ color: "#022A72", backgroundColor: "white" }}>
               <img
                 src="/mobile-recharge.png"
                 alt="Mobile Recharge"
@@ -285,8 +267,6 @@ export default function HomePage() {
             Mobile Recharge
           </Button>
         </Grid>
-
-        {/* Credit Card Button */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -298,26 +278,16 @@ export default function HomePage() {
               textTransform: "none",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
-              "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)",
-              },
+              "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
               padding: 0,
             }}
           >
-            <Box
-              sx={{
-                color: "#022A72",
-                backgroundColor: "white",
-                pb: 0.8,
-              }}
-            >
-              <img src="/cradit-card.png" alt="Credit Card" style={{ width: 32, height: 22 }}  />
+            <Box sx={{ color: "#022A72", backgroundColor: "white", pb: 0.8 }}>
+              <img src="/cradit-card.png" alt="Credit Card" style={{ width: 32, height: 22 }} />
             </Box>
-            Credit Card 
+            Credit Card
           </Button>
         </Grid>
-
-        {/* Electricity Button */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -329,19 +299,11 @@ export default function HomePage() {
               textTransform: "none",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
-              "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)",
-              },
+              "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
               padding: 0,
             }}
           >
-            <Box
-              sx={{
-                color: "#022A72",
-                backgroundColor: "white",
-                pb:0.3,
-              }}
-            >
+            <Box sx={{ color: "#022A72", backgroundColor: "white", pb: 0.3 }}>
               <img
                 src="/Electricity-bill.png"
                 alt="Electricity"
@@ -351,8 +313,6 @@ export default function HomePage() {
             Electricity
           </Button>
         </Grid>
-
-        {/* FASTag Button */}
         <Grid item xs={3}>
           <Button
             fullWidth
@@ -364,26 +324,19 @@ export default function HomePage() {
               textTransform: "none",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
-              "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)",
-              },
+              "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
               padding: 0,
             }}
           >
-            <Box
-              sx={{
-                color: "#022A72",
-                backgroundColor: "white",
-                pb:0.2,
-              }}
-            >
-              <img src="/fastag.png" alt="FASTag" style={{ width: 32
-                , height: 26 }} />
+            <Box sx={{ color: "#022A72", backgroundColor: "white", pb: 0.2 }}>
+              <img src="/fastag.png" alt="FASTag" style={{ width: 32, height: 26 }} />
             </Box>
             FASTag Recharge
           </Button>
         </Grid>
       </Grid>
+
+      {/* Do More with Paytm */}
       <Box sx={{ mb: 2, backgroundColor: "#e0f7fa", p: 2, borderRadius: 1 }}>
         <Typography
           variant="h6"
@@ -392,7 +345,6 @@ export default function HomePage() {
         >
           DO MORE WITH PAYTM
         </Typography>
-
         <Grid container spacing={1}>
           <Grid item xs={3}>
             <Button
@@ -405,9 +357,7 @@ export default function HomePage() {
                 justifyContent: "center",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
-                "&:hover": {
-                  backgroundColor: "rgba(2, 42, 114, 0.1)",
-                },
+                "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
                 padding: 0,
               }}
             >
@@ -428,9 +378,7 @@ export default function HomePage() {
                 textTransform: "none",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
-                "&:hover": {
-                  backgroundColor: "rgba(2, 42, 114, 0.1)",
-                },
+                "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
                 padding: 0,
               }}
             >
@@ -451,13 +399,11 @@ export default function HomePage() {
                 textTransform: "none",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
-                "&:hover": {
-                  backgroundColor: "rgba(2, 42, 114, 0.1)",
-                },
+                "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
                 <img src="/paytm-money.png" alt="Paytm Money" style={{ width: 24, height: 24 }} />
               </Box>
               Paytm Money
@@ -474,13 +420,11 @@ export default function HomePage() {
                 textTransform: "none",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
-                "&:hover": {
-                  backgroundColor: "rgba(2, 42, 114, 0.1)",
-                },
+                "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
                 <img src="/sip.png" alt="SIP" style={{ width: 24, height: 24 }} />
               </Box>
               SIP @ ₹250
@@ -497,13 +441,11 @@ export default function HomePage() {
                 justifyContent: "center",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
-                "&:hover": {
-                  backgroundColor: "rgba(2, 42, 114, 0.1)",
-                },
+                "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
                 <img src="/flight-bus.png" alt="Travel" style={{ width: 24, height: 24 }} />
               </Box>
               Travel
@@ -520,13 +462,11 @@ export default function HomePage() {
                 justifyContent: "center",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
-                "&:hover": {
-                  backgroundColor: "rgba(2, 42, 114, 0.1)",
-                },
+                "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
                 <img src="/24k.png" alt="Movies" style={{ width: 24, height: 24 }} />
               </Box>
               Buy Gold
@@ -543,19 +483,16 @@ export default function HomePage() {
                 justifyContent: "center",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
-                "&:hover": {
-                  backgroundColor: "rgba(2, 42, 114, 0.1)",
-                },
+                "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
                 <img src="/movies.png" alt="Movies" style={{ width: 24, height: 24 }} />
               </Box>
               Movies
             </Button>
           </Grid>
-          
           <Grid item xs={3}>
             <Button
               fullWidth
@@ -567,13 +504,11 @@ export default function HomePage() {
                 textTransform: "none",
                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                 color: "#022A72",
-                "&:hover": {
-                  backgroundColor: "rgba(2, 42, 114, 0.1)",
-                },
+                "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
                 padding: 0,
               }}
             >
-              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1,mb: 0 }}>
+              <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
                 <img src="/all-services.png" alt="All Services" style={{ width: 24, height: 24 }} />
               </Box>
               All Services
@@ -586,7 +521,7 @@ export default function HomePage() {
       <Typography
         variant="h6"
         gutterBottom
-        sx={{ color: "#333", fontSize: { xs: "1rem", sm: "1.25rem" ,paddingLeft:15} }}
+        sx={{ color: "#333", fontSize: { xs: "1rem", sm: "1.25rem", paddingLeft: 15 } }}
       >
         FREE TOOLS
       </Typography>
@@ -602,9 +537,7 @@ export default function HomePage() {
               justifyContent: "center",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
-              "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)",
-              },
+              "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
               padding: 0,
             }}
           >
@@ -625,9 +558,7 @@ export default function HomePage() {
               textTransform: "none",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
-              "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)",
-              },
+              "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
               padding: 0,
             }}
           >
@@ -648,9 +579,7 @@ export default function HomePage() {
               justifyContent: "center",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
-              "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)",
-              },
+              "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
               padding: 0,
             }}
           >
@@ -671,9 +600,7 @@ export default function HomePage() {
               justifyContent: "center",
               fontSize: { xs: "0.75rem", sm: "0.875rem" },
               color: "#022A72",
-              "&:hover": {
-                backgroundColor: "rgba(2, 42, 114, 0.1)",
-              },
+              "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
               padding: 0,
             }}
           >
@@ -686,16 +613,12 @@ export default function HomePage() {
       </Grid>
 
       {/* Cashback & Ad */}
-      <Grid
-        container
-        spacing={1}
-        sx={{ mb: 2, backgroundColor: "#f2f6f9", p: 1 }}
-      >
+      <Grid container spacing={1} sx={{ mb: 2, backgroundColor: "#f2f6f9", p: 1 }}>
         <Grid item xs={6} sx={{ backgroundColor: "#ffffff", borderRadius: 2 }}>
           <Button
             fullWidth
             startIcon={<AccountBalanceWalletIcon />}
-            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem",textTransform: "none", } }}
+            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" }, textTransform: "none" }}
           >
             Cashback & Offers
           </Button>
@@ -704,14 +627,14 @@ export default function HomePage() {
           <Button
             fullWidth
             startIcon={<img src="/points&gift.png" alt="Points" style={{ width: 20, height: 25 }} />}
-            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem",textTransform: "none", } }}
+            sx={{ fontSize: { xs: "0.6rem", sm: "0.875rem" }, textTransform: "none" }}
           >
             Points & Gift Cards
           </Button>
         </Grid>
       </Grid>
 
-      {/* Footer - unchanged since already using image */}
+      {/* Footer */}
       <Box
         sx={{
           mb: 2,

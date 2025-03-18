@@ -3,7 +3,25 @@ import loadingReducer from './loadingSlice';
 import clickReducer from './clickSlice';
 import upiReducer from './upiSlice';
 import searchReducer from './searchSlice';
+import ticketReducer from './ticketSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+
+// Middleware to persist ticket state to localStorage
+const localStorageMiddleware = (store: any) => (next: any) => (action: any) => {
+  const result = next(action);
+  const state = store.getState();
+  localStorage.setItem('ticketState', JSON.stringify(state.ticket));
+  return result;
+};
+
+// Function to load initial state from localStorage
+const loadState = () => {
+  const serializedState = localStorage.getItem('ticketState');
+  if (serializedState) {
+    return JSON.parse(serializedState);
+  }
+  return undefined; // Fallback to initialState in ticketSlice
+};
 
 export const store = configureStore({
   reducer: {
@@ -11,11 +29,15 @@ export const store = configureStore({
     click: clickReducer,
     upi: upiReducer,
     search: searchReducer,
+    ticket: ticketReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }),
+    }).concat(localStorageMiddleware),
+  preloadedState: {
+    ticket: loadState(), // Load ticket state on store initialization
+  },
   devTools: process.env.NODE_ENV !== 'production',
 });
 

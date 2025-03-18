@@ -24,3 +24,8 @@ p {
   margin-left: 3px;
   margin-right: 3px;
 }
+
+.qr{
+  margin-left: 80px;
+  scale: 1.5;
+}
