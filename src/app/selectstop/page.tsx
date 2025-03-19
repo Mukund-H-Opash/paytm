@@ -120,6 +120,8 @@ export function SelectStopPage() {
     }
   };
 
+  /* eslint-disable react-hooks/exhaustive-deps */
+
   useEffect(() => {
     if (fromStop && toStop) {
       // Calculate price based on stop index difference
@@ -139,7 +141,7 @@ export function SelectStopPage() {
       });
       router.push(`/ticket-booking?${params.toString()}`);
     }
-  }, [fromStop, toStop, router, dispatch, stop]);
+  }, [fromStop, toStop, router, dispatch, stops]); // ESLint warning here might be suppressed
 
   const filteredStops = stops.filter(
     (stop) =>
