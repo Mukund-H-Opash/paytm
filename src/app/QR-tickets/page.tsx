@@ -25,7 +25,7 @@ import {
 } from "../../store/ticketSlice";
 import Image from "next/image";
 
-const QRTicketsPage =() =>{
+const QRTickets =() =>{
   const router = useRouter();
   const dispatch = useDispatch();
   const { from, to, price, passengers, ticketId, issuedAt, transactionId } = useSelector(
@@ -191,4 +191,4 @@ const QRTicketsPage =() =>{
   );
 }
 
-export default QRTicketsPage;
+export default QRTickets;
