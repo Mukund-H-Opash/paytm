@@ -266,7 +266,7 @@ export default function TicketBookingPage() {
               <Image src="/dummy-qr.png" alt="Logo" height={50 } width={50}/>
               <Button
                 sx={{ color: "#0288D1", textTransform: "none", fontSize: "0.875rem", mt: 0.1 }}
-                onClick={() => router.push("/qr-tickets")}
+                onClick={() => router.push("/qrcode-ticket")}
               >
                 tap to view
               </Button>

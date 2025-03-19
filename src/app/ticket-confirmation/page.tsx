@@ -213,7 +213,7 @@ export default function TicketConfirmationPage() {
           <Typography sx={{ fontSize: "0.675rem", justifyItems: "center" }}>HOURS MINUTES SECONDS</Typography>
           <Button
             variant="contained"
-            onClick={() => router.push("/qr-tickets")}
+            onClick={() => router.push("/qrcode-ticket")}
             sx={{ backgroundColor: "#0288d1", color: "#ffffff", borderRadius: 2, textTransform: "none", width: "95%" }}
           >
             View Your Tickets
