@@ -139,7 +139,7 @@ export function SelectStopPage() {
       });
       router.push(`/ticket-booking?${params.toString()}`);
     }
-  }, [fromStop, toStop, router, dispatch, stops]);
+  }, [fromStop, toStop, router, dispatch, stop]);
 
   const filteredStops = stops.filter(
     (stop) =>
