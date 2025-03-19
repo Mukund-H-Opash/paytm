@@ -84,8 +84,8 @@ export default function UPIPaymentPage() {
   };
 
   const handleConfirmPayment = () => {
-    const newTransactionId = `TXN${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
-    dispatch(setTransactionId(newTransactionId));
+    const newTransactionId = Math.floor(100000000000 + Math.random() * 900000000000);
+    dispatch(setTransactionId(String(newTransactionId)));
     console.log("Confirm Payment - New Transaction ID:", newTransactionId);
 
     const newTicket = {

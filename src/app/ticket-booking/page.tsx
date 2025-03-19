@@ -32,7 +32,7 @@ export default function TicketBookingPage() {
     price: number;
     passengers: number;
     issuedAt?: string;
-    ticketId?: string;
+    ticketId?: string|number;
     transactionId?: string;
   }
 
@@ -109,7 +109,7 @@ export default function TicketBookingPage() {
 
   const handleBuyTicket = (): void => {
 
-    const ticketId = `T${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+    const ticketId = Math.floor(10000000000 + Math.random() * 90000000000);
     const issuedAt = Date.now();
 
     const newOrder: Order = {
@@ -119,7 +119,7 @@ export default function TicketBookingPage() {
       price: price || 1,
       passengers,
       issuedAt:new Date(issuedAt).toISOString(),
-      ticketId,
+      ticketId: ticketId.toString(),
     };
 
     const updatedOrders = [newOrder, ...recentOrders].slice(0, 3);
@@ -130,7 +130,7 @@ export default function TicketBookingPage() {
     dispatch(setTo(newOrder.to));
     dispatch(setPrice(newOrder.price));
     dispatch(setPassengers(newOrder.passengers));
-    dispatch(setTicketId(ticketId));
+    dispatch(setTicketId(ticketId.toString()));
     dispatch(setIssuedAt(issuedAt));
    
       // setFrom("");

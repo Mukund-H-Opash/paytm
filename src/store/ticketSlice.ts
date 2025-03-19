@@ -8,7 +8,7 @@ interface TicketOrder {
   passengers: number;
   orderId: string;
   ticketId: string;
-  transactionId: string;
+  transactionId: string|number;
   issuedAt: number;
   validFor: number;
 }

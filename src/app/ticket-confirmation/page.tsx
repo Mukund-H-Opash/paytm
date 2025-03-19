@@ -248,15 +248,23 @@ export default function TicketConfirmationPage() {
       <Box sx={{ mb: 2, border: "1px solid #e0e0e0", borderRadius: 2, padding: 1, my: 2 }}>
         <Typography sx={{ fontSize: "1rem", fontWeight: "bold", py: 1 }}>Payment Details</Typography>
         <Typography sx={{ fontSize: "0.675rem", color: "#757575", py: 1 }}>FARE BREAKUP</Typography>
-        <Typography sx={{ fontSize: "0.75rem", py: 1, borderBottom: "1px solid #e0e0e0" }}>
-          {passengers}x Adult
-        </Typography>
-        <Typography sx={{ fontSize: "0.775rem", py: 1, borderBottom: "1px dashed #e0e0e0" }}>
-          Total: ₹{price}
-        </Typography>
+
+        <Box sx={{ display: "flex", justifyContent: "space-between", py: 1, borderBottom: "1px solid #e0e0e0" }}>
+          <Typography sx={{ fontSize: "0.75rem" }}>{passengers}x Adult</Typography>
+          <Typography sx={{ fontSize: "0.75rem" }}>₹{price}</Typography>
+        </Box>
+
+        <Box sx={{ display: "flex", justifyContent: "space-between", py: 1, borderBottom: "1px dashed #e0e0e0" }}>
+          <Typography sx={{ fontSize: "0.775rem" }}>Total:</Typography>
+          <Typography sx={{ fontSize: "0.775rem" }}>₹{price}</Typography>
+        </Box>
+
         <Typography sx={{ fontSize: "0.775rem", color: "#757575", py: 1 }}>Payment Mode</Typography>
-        <Typography sx={{ fontSize: "0.775rem", py: 1 }}>UPI Linked Bank Account</Typography>
-        <Typography sx={{ fontSize: "0.775rem" }}>₹{price}</Typography>
+        <Box sx={{ display: "flex", justifyContent: "space-between", py: 1 }}>
+          <Typography sx={{ fontSize: "0.775rem" }}>UPI Linked Bank Account</Typography>
+          <Typography sx={{ fontSize: "0.775rem" }}>₹{price}</Typography>
+        </Box>
+
         <Typography sx={{ fontSize: "0.775rem", py: 1 }}>Transaction ID: {transactionId}</Typography>
       </Box>
     </Box>
