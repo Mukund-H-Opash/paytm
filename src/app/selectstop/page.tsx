@@ -8,7 +8,7 @@ import { useEffect, useState, useRef ,useMemo, use} from "react";
 import { useDispatch } from "react-redux";
 import { setFrom, setTo, setPrice } from "../../store/ticketSlice";
 
-export function SelectStopPage() {
+const SelectStopPage=()=> {
   const router = useRouter();
   const dispatch = useDispatch();
   const [fromSearch, setFromSearch] = useState<string>("");

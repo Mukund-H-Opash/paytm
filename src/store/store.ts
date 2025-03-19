@@ -9,16 +9,20 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 // Middleware to persist ticket state to localStorage
 const localStorageMiddleware: Middleware = store => next => action => {
   const result = next(action);
-  const state = store.getState();
-  localStorage.setItem('ticketState', JSON.stringify(state.ticket));
+  if (typeof window !== "undefined") {
+    const state = store.getState();
+    localStorage.setItem('ticketState', JSON.stringify(state.ticket));
+  }
   return result;
 };
 
 // Function to load initial state from localStorage
 const loadState = () => {
-  const serializedState = localStorage.getItem('ticketState');
-  if (serializedState) {
-    return JSON.parse(serializedState);
+  if (typeof window !== "undefined") {
+    const serializedState = localStorage.getItem('ticketState');
+    if (serializedState) {
+      return JSON.parse(serializedState);
+    }
   }
   return undefined; // Fallback to initialState in ticketSlice
 };
