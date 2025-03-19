@@ -130,9 +130,9 @@ const QRTickets =() =>{
       <Typography
         sx={{ fontSize: "1.5rem", mb: 1, fontWeight: "bold", p: 1, textAlign: "center" }}
       >
-        {from.length > 10 ? `${from.slice(0, 10)}...` : from}{" "}
+        {from.length > 9 ? `${from.slice(0, 8)}..` : from}{" "}
         <ArrowForward sx={{ fontSize: "16px", mx: 1 }} />{" "}
-        {to.length > 10 ? `${to.slice(0, 10)}...` : to}
+        {to.length > 9 ? `${to.slice(0, 8)}..` : to}
       </Typography>
       <Box sx={{ display: "flex", textAlign: "center", mb: 2, justifyContent: "center" }}>
         <Typography sx={{ fontSize: "0.9rem", mb: 2 }}>

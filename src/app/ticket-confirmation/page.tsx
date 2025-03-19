@@ -22,7 +22,7 @@ import {
   setIssuedAt,
   setTransactionId,
 } from "../../store/ticketSlice";
-import Loader from "../components/Loader"; // Ensure the path matches your project structure
+import Loader from "../components/Loader"; 
 import Image from "next/image";
 
 export default function TicketConfirmationPage() {
@@ -60,8 +60,8 @@ export default function TicketConfirmationPage() {
 
     // Save to localStorage
     const activeTicket = {
-      from: from.length > 5 ? `${from.slice(0, 5)}...` : from,
-      to: to.length > 5 ? `${to.slice(0, 5)}...` : to,
+      from: from.length > 10 ? `${from.slice(0, 9)}...` : from,
+      to: to.length > 10 ? `${to.slice(0, 9)}...` : to,
       via: "Via Adajan Gam Brts",
       price,
       passengers,
@@ -102,7 +102,7 @@ export default function TicketConfirmationPage() {
   }, [from, to, price, passengers, ticketId, issuedAt, transactionId, router, dispatch]);
 
   if (isLoading) {
-    return <Loader />; // Use the Loader component with 5-second minimum display
+    return <Loader />; 
   }
 
   if (!from || !to || !price || !passengers || !ticketId || !issuedAt) {

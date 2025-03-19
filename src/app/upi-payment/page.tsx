@@ -14,6 +14,7 @@ import BackspaceIcon from "@mui/icons-material/Backspace";
 import { RootState } from "../../store/store";
 import { setFrom, setTo, setPrice, setPassengers, setTicketId, setIssuedAt, setTransactionId } from "../../store/ticketSlice";
 import Image from "next/image";
+import Loader from "../components/Loader";
 import "../../app/globals.css";
 
 export default function UPIPaymentPage() {
@@ -61,7 +62,7 @@ export default function UPIPaymentPage() {
   }, [from, to, price, passengers, ticketId, issuedAt, transactionId, router, dispatch]);
 
   const handleBackClick = () => {
-    router.push("/payment");
+    router.push("/ticket-booking");
   };
 
   const handleKeyPress = () => {
@@ -87,6 +88,17 @@ export default function UPIPaymentPage() {
     dispatch(setTransactionId(newTransactionId));
     console.log("Confirm Payment - New Transaction ID:", newTransactionId);
 
+    const newTicket = {
+      from: from!.length > 10 ? `${from!.slice(0, 9)}...` : from!,
+      to: to!.length > 10 ? `${to!.slice(0, 9)}...` : to!,
+      via: "Via Adajan Gam Brts",
+      price: price!,
+      passengers,
+      issuedAt: new Date(issuedAt).toISOString(),
+      ticketId,
+      transactionId: newTransactionId,
+    };
+
     // Update activeTicket with all fields
     const updatedTicket = {
       from,
@@ -99,13 +111,20 @@ export default function UPIPaymentPage() {
       transactionId: newTransactionId,
     };
     localStorage.setItem("activeTicket", JSON.stringify(updatedTicket));
+
+      dispatch(setFrom(newTicket.from));
+      dispatch(setTo(newTicket.to));
+      dispatch(setPrice(newTicket.price));
+      dispatch(setPassengers(newTicket.passengers));
+      dispatch(setTicketId(newTicket.ticketId));
+      dispatch(setIssuedAt(issuedAt));
     console.log("Updated activeTicket in localStorage:", updatedTicket);
 
     router.push("/ticket-confirmation");
   };
 
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return <Loader />;
   }
 
   return (

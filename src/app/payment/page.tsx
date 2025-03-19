@@ -29,7 +29,6 @@ import  "../../app/globals.css";
 export default function PaymentPage() {
   const router = useRouter();
   const [orderDetails, setOrderDetails] = useState<{ from: string; to: string; price: string; passengers: string }>({ from: '', to: '', price: '', passengers: '' });
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<string>("sbi");
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -49,10 +48,7 @@ export default function PaymentPage() {
     router.push("/ticket-booking");
   };
 
-  const handlePaymentMethodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedPaymentMethod(event.target.value);
-  };
-
+  
   const handlePaySecurely = () => {
     router.push(`/upi-payment?amount=${orderDetails?.price}`);
   };
@@ -65,7 +61,7 @@ export default function PaymentPage() {
     <Box sx={{ padding: 2, backgroundColor: "#f5f5f5",  }}>
       {/* Header with Back Button */}
       <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-        <IconButton >
+        <IconButton  onClick={handleBackClick}>
           <ArrowBackIcon />
         </IconButton>
         <Box>

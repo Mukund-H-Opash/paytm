@@ -53,7 +53,15 @@ const ticketSlice = createSlice({
     setIssuedAt: (state, action: PayloadAction<number>) => {
       state.issuedAt = action.payload;
     },
-    resetTicket: () => initialState,
+    clearBooking: (state) => {
+      state.from = "";
+      state.to = "";
+      state.passengers = 1;
+      state.price = 0;
+      state.issuedAt = 0;
+      state.ticketId = "";
+      state.transactionId = "";;
+    },
   },
 });
 
@@ -66,6 +74,6 @@ export const {
   setTicketId,
   setTransactionId,
   setIssuedAt,
-  resetTicket,
+  clearBooking,
 } = ticketSlice.actions;
 export default ticketSlice.reducer;

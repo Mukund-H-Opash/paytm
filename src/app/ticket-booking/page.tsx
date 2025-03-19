@@ -33,6 +33,7 @@ export default function TicketBookingPage() {
     passengers: number;
     issuedAt?: string;
     ticketId?: string;
+    transactionId?: string;
   }
 
   const [recentOrders, setRecentOrders] = useState<Order[]>([]);
@@ -47,11 +48,15 @@ export default function TicketBookingPage() {
     } else {
       setRecentOrders([
         {
-          from: "Adaj...",
-          to: "Sanjeev Ku...",
+          from: "Adajan Gam",
+          to: "Sanjeev ku... ",
           via: "Via Adajan Gam Brts",
           price: 4,
           passengers: 1,
+          issuedAt: new Date().toISOString(),
+          ticketId: "1234567890",
+          transactionId: "892586963578",
+
         },
       ]);
     }
@@ -103,12 +108,13 @@ export default function TicketBookingPage() {
   };
 
   const handleBuyTicket = (): void => {
+
     const ticketId = `T${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
     const issuedAt = Date.now();
 
     const newOrder: Order = {
-      from: from.length > 5 ? `${from.slice(0, 5)}...` : from,
-      to: to.length > 5 ? `${to.slice(0, 5)}...` : to,
+      from: from.length > 9 ? `${from.slice(0, 8)}..` : from,
+      to: to.length > 9 ? `${to.slice(0, 8)}..` : to,
       via: "Via Adajan Gam Brts",
       price: price || 1,
       passengers,
@@ -395,12 +401,18 @@ export default function TicketBookingPage() {
               textTransform: "none",
               width: "100%",
               mb: 1,
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center', 
+              padding: '12px 16px', 
             }}
           >
             {isBuyButtonEnabled ? (
               <>
-                Buy Ticket for ₹{price || 12}
-                <Typography sx={{ fontSize: "0.75rem", ml: 1 }}>
+                <Typography sx={{ fontWeight: 500, fontSize: "1rem" ,color: "#ffffff"}}>
+                  Buy Ticket for ₹{price || 4}
+                </Typography>
+                <Typography sx={{ fontSize: "0.65rem", color: "#b0bec5" }}>
                   20% discount only on Paytm
                 </Typography>
               </>
@@ -408,8 +420,9 @@ export default function TicketBookingPage() {
               "Buy Ticket"
             )}
           </Button>
+
           <Box sx={{ display: "flex", alignItems: "center", color: "#757575" }}>
-            <InfoIcon sx={{ fontSize: "16px", mr: 1 }} />
+            <InfoIcon sx={{ fontSize: "16px", mr: 1 ,color: "#100100"}} />
             <Typography sx={{ fontSize: "0.75rem" }}>
               All bus tickets will be valid for 2 hours post booking
             </Typography>
