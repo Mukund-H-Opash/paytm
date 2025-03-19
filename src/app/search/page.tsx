@@ -4,7 +4,7 @@ import { Box, Typography, Button, Grid, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/store"; // Updated path as per your input
+import { RootState } from "../../store/store"; 
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Image from "next/image";
@@ -12,17 +12,20 @@ import "../../app/globals.css";
 
 export default function SearchPage() {
   const router = useRouter();
-  const orderId = useSelector((state: RootState) => state.ticket.orderId); // Read orderId from ticketSlice
-  const [searchValue, setSearchValue] = useState(""); // Local state for search input
+  const orderId = useSelector((state: RootState) => state.ticket.orderId); 
+  const [searchValue, setSearchValue] = useState(""); 
 
-  // Removed strict orderId check to allow new users to use SearchPage
+  
   useEffect(() => {
-    // Optional: Log orderId for debugging, but no redirect
+    
     console.log("Current orderId:", orderId);
   }, [orderId]);
 
   const handleSearchClick = () => {
     if (searchValue.trim()) {
+      router.push("/sitilink");
+    }
+    else{
       router.push("/sitilink");
     }
   };

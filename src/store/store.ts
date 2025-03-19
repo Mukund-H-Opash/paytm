@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import loadingReducer from './loadingSlice';
 import clickReducer from './clickSlice';
-import upiReducer from './upiSlice';
+
 import searchReducer from './searchSlice';
 import ticketReducer from './ticketSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
@@ -27,7 +27,6 @@ export const store = configureStore({
   reducer: {
     loading: loadingReducer,
     click: clickReducer,
-    upi: upiReducer,
     search: searchReducer,
     ticket: ticketReducer,
   },

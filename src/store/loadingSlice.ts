@@ -5,7 +5,7 @@ interface LoadingState {
 }
 
 const initialState: LoadingState = {
-  isLoading: true, // Start as true (splash screen is visible)
+  isLoading: true, 
 };
 
 const loadingSlice = createSlice({
