@@ -23,6 +23,7 @@ import {
   setIssuedAt,
   setTransactionId,
 } from "../../store/ticketSlice";
+import Loader from "../components/Loader";
 import Image from "next/image";
 
 const QRTickets =() =>{
@@ -85,7 +86,7 @@ const QRTickets =() =>{
 
   // Show loading until restoration is complete
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return <Loader />;
   }
 
   // Redirect only if no data after restoration

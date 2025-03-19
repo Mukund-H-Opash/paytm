@@ -22,6 +22,7 @@ import {
   setIssuedAt,
   setTransactionId,
 } from "../../store/ticketSlice";
+import Loader from "../components/Loader"; // Ensure the path matches your project structure
 import Image from "next/image";
 
 export default function TicketConfirmationPage() {
@@ -34,9 +35,12 @@ export default function TicketConfirmationPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Track when restoration starts
+    const startTime = Date.now();
+
+    // Restore from localStorage if Redux is empty
     if (!from && !to && !price && !passengers && !ticketId && !issuedAt) {
       const storedTicket = localStorage.getItem("activeTicket");
-     
 
       if (storedTicket) {
         const ticket = JSON.parse(storedTicket);
@@ -49,7 +53,6 @@ export default function TicketConfirmationPage() {
         dispatch(setTransactionId(ticket.transactionId || ""));
         console.log("Dispatched Ticket to Redux:", ticket);
       } else {
-        console.log("No activeTicket found, redirecting to /ticket-booking");
         router.push("/ticket-booking");
         return;
       }
@@ -68,8 +71,14 @@ export default function TicketConfirmationPage() {
     };
     localStorage.setItem("activeTicket", JSON.stringify(activeTicket));
 
-    // Set loading to false after restoration
-    setIsLoading(false);
+  
+    const elapsedTime = Date.now() - startTime;
+    const remainingTime = Math.max(0,2000 - elapsedTime);
+
+    
+    setTimeout(() => {
+      setIsLoading(false);
+    }, remainingTime);
 
     const effectiveIssuedAt = issuedAt || Date.now();
     const expiresAt = effectiveIssuedAt + 7200 * 1000;
@@ -93,14 +102,13 @@ export default function TicketConfirmationPage() {
   }, [from, to, price, passengers, ticketId, issuedAt, transactionId, router, dispatch]);
 
   if (isLoading) {
-    return <Typography>Loading...</Typography>;
+    return <Loader />; // Use the Loader component with 5-second minimum display
   }
 
   if (!from || !to || !price || !passengers || !ticketId || !issuedAt) {
     console.log("Redux still empty after restoration, redirecting to /ticket-booking");
     console.log({ from, to, price, passengers, ticketId, issuedAt });
     router.push("/ticket-booking");
-
     return null;
   }
 
@@ -254,3 +262,4 @@ export default function TicketConfirmationPage() {
     </Box>
   );
 }
+

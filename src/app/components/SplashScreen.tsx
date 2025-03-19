@@ -26,13 +26,14 @@ const SplashScreen = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center',
-        height: '100vh',
+        height: '88vh',
         backgroundColor: '#fff',
-        padding: '10px',
+        padding: '10px', 
+
       }}
-      suppressHydrationWarning // Suppress hydration mismatch
+      suppressHydrationWarning 
     >
       {/* Paytm Logo */}
       <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
@@ -40,29 +41,41 @@ const SplashScreen = () => {
       </Box>
 
       {/* Secure Badge */}
-        <Box 
-          sx={{ 
-            textAlign: 'center', 
-            marginBottom: '20px', 
-            borderBottom: '5px solid #0A207A' 
-          }}
-        >
-          <Typography 
-            variant="body2" 
-            color="textSecondary" 
-            sx={{ 
-              fontSize: 25, 
-              color: '#0A207A', 
-              fontWeight: 700,  
-              fontStyle: 'italic', 
-              p:1,
-
-            }}
-          >
-            Top Rated <br/>
-            UPI App in India
-          </Typography>
-        </Box>
+        <Box
+  sx={{
+    textAlign: 'center',
+    marginBottom: '20px',
+    borderBottom: '5px solid #00B8F6', 
+    position: 'relative', 
+    '&:after': {
+      content: '""',
+      position: 'absolute',
+      bottom: '-8px', 
+      left: '50%',
+      transform: 'translateX(-50%)',
+      width: '100%',
+      height: '4px',
+      backgroundColor: '#022A72', 
+    },
+  }}
+>
+  <Typography
+    variant="body2"
+    color="textSecondary"
+    sx={{
+      fontSize: 25,
+      color: '#0A207A',
+      fontWeight: 700,
+      fontStyle: 'italic',
+      p: 1,
+      backgroundColor: '#fff', 
+      display: 'inline-block', 
+    }}
+  >
+    Top Rated <br />
+    UPI App in India
+  </Typography>
+</Box>
 
     </Box>
   );
