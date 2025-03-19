@@ -4,7 +4,7 @@
 import { Box, Typography, Button, TextField, InputAdornment, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef ,useMemo, use} from "react";
 import { useDispatch } from "react-redux";
 import { setFrom, setTo, setPrice } from "../../store/ticketSlice";
 
@@ -18,7 +18,7 @@ export function SelectStopPage() {
   const fromInputRef = useRef<HTMLInputElement>(null);
   const toInputRef = useRef<HTMLInputElement>(null);
 
-  const stops: string[] = [
+  const stops: string[] =useMemo(() => [
     "Pal R.T.O. BRTS",
     "Sanjeev Kumar Auditorium BRTS",
     "Adajan Gam",
@@ -93,7 +93,7 @@ export function SelectStopPage() {
     "Yogi Nagar BRTS",
     "Swagat Society BRTS",
     "S.M.V.S. Swaminarayan Temple BRTS",
-  ];
+  ], []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);

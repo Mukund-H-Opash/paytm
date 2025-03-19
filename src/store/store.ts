@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, Middleware } from '@reduxjs/toolkit';
 import loadingReducer from './loadingSlice';
 import clickReducer from './clickSlice';
 
@@ -7,7 +7,7 @@ import ticketReducer from './ticketSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 // Middleware to persist ticket state to localStorage
-const localStorageMiddleware = (store: any) => (next: any) => (action: any) => {
+const localStorageMiddleware: Middleware = store => next => action => {
   const result = next(action);
   const state = store.getState();
   localStorage.setItem('ticketState', JSON.stringify(state.ticket));
