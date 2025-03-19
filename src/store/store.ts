@@ -12,7 +12,7 @@ const localStorageMiddleware: Middleware = store => next => action => {
   if (typeof window !== "undefined") {
     const state = store.getState();
     localStorage.setItem('ticketState', JSON.stringify(state.ticket));
-  }
+  }  
   return result;
 };
 
