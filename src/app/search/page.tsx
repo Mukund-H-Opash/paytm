@@ -65,7 +65,7 @@ export default function SearchPage() {
             display: "flex",
             alignItems: "center",
             flex: 1,
-            position: "relative", // For dropdown positioning
+            position: "relative",
           }}
         >
           <SearchIcon sx={{ color: "#757575", mr: 1 }} />

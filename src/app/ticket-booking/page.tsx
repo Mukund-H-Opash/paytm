@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -11,6 +10,8 @@ import {
   TextField,
   MenuItem,
   Select,
+  FormControl,
+  InputLabel,
 } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -32,17 +33,26 @@ export default function TicketBookingPage() {
     price: number;
     passengers: number;
     issuedAt?: string;
-    ticketId?: string|number;
+    ticketId?: string | number;
     transactionId?: string;
   }
 
   const [recentOrders, setRecentOrders] = useState<Order[]>([]);
   const [activeTicket, setActiveTicket] = useState<Order | null>(null);
 
+  // Calculate the base price (before multiplication by passengers)
+  const basePrice = price || 4; // Default to 4 if price is not set
+  // Calculate the total price (base price × passengers)
+  const totalPrice = basePrice * passengers;
+  // Calculate the original price (before discount, with 20% markup)
+  const originalPrice = totalPrice + Math.ceil(totalPrice * 0.2);
+  // Calculate the discounted price (20% off the original price)
+  const discountedPrice = totalPrice;
+
   useEffect(() => {
     const storedOrders = localStorage.getItem("recentOrders");
     const storedActiveTicket = localStorage.getItem("activeTicket");
-    
+
     if (storedOrders) {
       setRecentOrders(JSON.parse(storedOrders));
     } else {
@@ -51,12 +61,11 @@ export default function TicketBookingPage() {
           from: "Adajan Gam",
           to: "Sanjeev ku... ",
           via: "Via Adajan Gam Brts",
-          price: 4,
+          price: 4 * passengers, // Update to reflect passengers
           passengers: 1,
           issuedAt: new Date().toISOString(),
           ticketId: "1234567890",
           transactionId: "892586963578",
-
         },
       ]);
     }
@@ -72,7 +81,7 @@ export default function TicketBookingPage() {
         localStorage.removeItem("activeTicket");
       }
     }
-  }, []);
+  }, [passengers]); // Recompute when passengers changes
 
   useEffect(() => {
     if (recentOrders.length > 0) {
@@ -87,17 +96,15 @@ export default function TicketBookingPage() {
     const selectedPrice = urlParams.get("price");
 
     if (selectedFrom && selectedFrom !== from) {
-      
       dispatch(setFrom(selectedFrom));
     }
     if (selectedTo && selectedTo !== to) {
-      
       dispatch(setTo(selectedTo));
     }
-    if (selectedPrice && Number(selectedPrice) !== price) {
-      dispatch(setPrice(Number(selectedPrice)));
+    if (selectedPrice && Number(selectedPrice) !== basePrice) {
+      dispatch(setPrice(Number(selectedPrice))); // Store base price in Redux
     }
-  }, [dispatch,from, to, price]);
+  }, [dispatch, from, to, basePrice]);
 
   const handleBackClick = (): void => {
     router.push("/sitilink");
@@ -108,7 +115,6 @@ export default function TicketBookingPage() {
   };
 
   const handleBuyTicket = (): void => {
-
     const ticketId = Math.floor(10000000000 + Math.random() * 90000000000);
     const issuedAt = Date.now();
 
@@ -116,9 +122,9 @@ export default function TicketBookingPage() {
       from: from.length > 9 ? `${from.slice(0, 8)}..` : from,
       to: to.length > 9 ? `${to.slice(0, 8)}..` : to,
       via: "Via Adajan Gam Brts",
-      price: price || 1,
+      price: totalPrice, // Use total price (base price × passengers)
       passengers,
-      issuedAt:new Date(issuedAt).toISOString(),
+      issuedAt: new Date(issuedAt).toISOString(),
       ticketId: ticketId.toString(),
     };
 
@@ -128,18 +134,15 @@ export default function TicketBookingPage() {
     localStorage.setItem("activeTicket", JSON.stringify(newOrder));
     dispatch(setFrom(newOrder.from));
     dispatch(setTo(newOrder.to));
-    dispatch(setPrice(newOrder.price));
+    dispatch(setPrice(totalPrice)); // Update Redux with total price
     dispatch(setPassengers(newOrder.passengers));
     dispatch(setTicketId(ticketId.toString()));
     dispatch(setIssuedAt(issuedAt));
-   
-      // setFrom("");
-      // setTo("");
 
     const paymentParams = new URLSearchParams({
       from: newOrder.from,
       to: newOrder.to,
-      price: newOrder.price.toString(),
+      price: newOrder.price.toString(), // Pass total price
       passengers: newOrder.passengers.toString(),
     });
     router.push(`/payment?${paymentParams.toString()}`);
@@ -149,7 +152,7 @@ export default function TicketBookingPage() {
     dispatch(setFrom(order.from));
     dispatch(setTo(order.to));
     dispatch(setPassengers(order.passengers));
-    dispatch(setPrice(order.price));
+    dispatch(setPrice(order.price / order.passengers)); // Set base price in Redux
     router.push(`/payment?from=${order.from}&to=${order.to}&price=${order.price}&passengers=${order.passengers}`);
   };
 
@@ -201,14 +204,13 @@ export default function TicketBookingPage() {
           </Typography>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography sx={{ color: "#757575", fontSize: { xs: "0.875rem", sm: "1rem" }, ml: 4  }}>
+          <Typography sx={{ color: "#757575", fontSize: { xs: "0.875rem", sm: "1rem" }, ml: 4 }}>
             Surat ▼
           </Typography>
           <Button sx={{ color: "#0288d1", textTransform: "none" }}>Help</Button>
         </Box>
       </Box>
 
-      
       {activeTicket && (
         <Box
           sx={{
@@ -216,29 +218,26 @@ export default function TicketBookingPage() {
             borderRadius: 8,
             padding: 2,
             mb: 2,
-            borderTop : "2px solid #e0e0e0",
+            borderTop: "2px solid #e0e0e0",
             borderLeft: "2px solid #e0e0e0",
             borderRight: "2px solid #e0e0e0",
-            borderBottom: "5px solid #FFD700", 
-
+            borderBottom: "5px solid #FFD700",
             position: "relative",
-            clipPath: "polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%)", // Notched corner
+            clipPath: "polygon(0 0, 100% 0, 100% 85%, 95% 100%, 0 100%)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          {/* Ticket Info */}
           <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%", mb: 0 }}>
-          <Typography sx={{ fontSize: "0.875rem", color: "#757575", mb: 1, justifyContent: "left", textAlign: "left" }}>
-            {activeTicket.passengers} Adult Ticket
-          </Typography>
+            <Typography sx={{ fontSize: "0.875rem", color: "#757575", mb: 1, justifyContent: "left", textAlign: "left" }}>
+              {activeTicket.passengers} Adult Ticket
+            </Typography>
           </Box>
 
-          {/* Route and QR Code */}
           <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%", mb: 2 }}>
             <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
-              <Box sx={{ display: "flex", alignItems: "center" ,p:2 ,pb:1}}>
+              <Box sx={{ display: "flex", alignItems: "center", p: 2, pb: 1 }}>
                 <Box
                   sx={{
                     width: 10,
@@ -252,7 +251,7 @@ export default function TicketBookingPage() {
                   {activeTicket.from}
                 </Typography>
               </Box>
-              <Box sx={{ display: "flex", alignItems: "center", p:2,pt:1 }}>
+              <Box sx={{ display: "flex", alignItems: "center", p: 2, pt: 1 }}>
                 <Box
                   sx={{
                     width: 10,
@@ -266,10 +265,9 @@ export default function TicketBookingPage() {
                   {activeTicket.to}
                 </Typography>
               </Box>
-              
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center">
-              <Image src="/dummy-qr.png" alt="Logo" height={50 } width={50}/>
+              <Image src="/dummy-qr.png" alt="Logo" height={50} width={50} />
               <Button
                 sx={{ color: "#0288D1", textTransform: "none", fontSize: "0.875rem", mt: 0.1 }}
                 onClick={() => router.push("/qrcode-ticket")}
@@ -279,7 +277,6 @@ export default function TicketBookingPage() {
             </Box>
           </Box>
 
-          {/* Expiry Info */}
           <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
             <Box
               sx={{
@@ -372,23 +369,24 @@ export default function TicketBookingPage() {
             sx={{ mb: 2 }}
             InputProps={{ readOnly: true }}
           />
-          <Box sx={{ display: "flex", alignItems: "center", mb: 2, border: "1px solid #ADADAD", borderRadius: "5px" }}>
-            <Typography sx={{ mr: 2, color: "#757575", p: 1 }}>Passenger</Typography>
-            <Select
-              value={passengers}
-              onChange={(e) => {
-                const newPassengers = Number(e.target.value);
-                setPassengers(newPassengers);
-                dispatch(setPassengers(newPassengers));
-              }}
-              sx={{ width: "150px", border: "none" }}
-            >
-              {[1, 2, 3, 4].map((num) => (
-                <MenuItem key={num} value={num}>
-                  {num} Adult
-                </MenuItem>
-              ))}
-            </Select>
+          <Box sx={{ display: "flex", alignItems: "center", mb: 2, borderRadius: "5px" }}>
+            <FormControl fullWidth>
+              <InputLabel id="passengers-label" sx={{ backgroundColor: "#fff" }}>Passengers</InputLabel>
+              <Select
+                value={passengers}
+                onChange={(e) => {
+                  const newPassengers = Number(e.target.value);
+                  dispatch(setPassengers(newPassengers));
+                }}
+                sx={{ width: "100%", border: "none" }}
+              >
+                {[1, 2, 3, 4].map((num) => (
+                  <MenuItem key={num} value={num}>
+                    {num} Adult
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Box>
           <Button
             variant="contained"
@@ -401,16 +399,20 @@ export default function TicketBookingPage() {
               textTransform: "none",
               width: "100%",
               mb: 1,
-              display: 'flex', 
-              flexDirection: 'column', 
-              alignItems: 'center', 
-              padding: '12px 16px', 
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              padding: '12px 16px',
             }}
           >
             {isBuyButtonEnabled ? (
               <>
-                <Typography sx={{ fontWeight: 500, fontSize: "1rem" ,color: "#ffffff"}}>
-                  Buy Ticket for ₹{price || 4}
+                <Typography sx={{ fontWeight: 500, fontSize: "1rem", color: "#ffffff", display: 'flex', alignItems: 'center', flexDirection: 'row' }}>
+                  Buy Ticket for 
+                  <Typography sx={{ fontWeight: 500, color: "#ffffff", textDecoration: "line-through", opacity: 0.8, px: 0.5 }}>
+                    ₹{originalPrice}
+                  </Typography>
+                  ₹{discountedPrice}
                 </Typography>
                 <Typography sx={{ fontSize: "0.65rem", color: "#b0bec5" }}>
                   20% discount only on Paytm
@@ -422,7 +424,7 @@ export default function TicketBookingPage() {
           </Button>
 
           <Box sx={{ display: "flex", alignItems: "center", color: "#757575" }}>
-            <InfoIcon sx={{ fontSize: "16px", mr: 1 ,color: "#100100"}} />
+            <InfoIcon sx={{ fontSize: "16px", mr: 1, color: "#100100" }} />
             <Typography sx={{ fontSize: "0.75rem" }}>
               All bus tickets will be valid for 2 hours post booking
             </Typography>

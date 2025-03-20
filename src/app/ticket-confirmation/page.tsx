@@ -101,6 +101,17 @@ export default function TicketConfirmationPage() {
     return () => clearInterval(timer);
   }, [from, to, price, passengers, ticketId, issuedAt, transactionId, router, dispatch]);
 
+  useEffect(() => {
+    const handleBackNavigation = (event: PopStateEvent) => {
+      event.preventDefault();
+      router.push("/ticket-booking");
+    };
+    window.addEventListener("popstate", handleBackNavigation);
+    return () => {
+      window.removeEventListener("popstate", handleBackNavigation);
+    };
+  }, [router]);
+
   if (isLoading) {
     return <Loader />; 
   }
@@ -121,6 +132,7 @@ export default function TicketConfirmationPage() {
     hour12: true,
   });
 
+
   return (
     <Box sx={{ backgroundColor: "#ffffff", padding: 2, minHeight: "100vh" }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
@@ -136,7 +148,10 @@ export default function TicketConfirmationPage() {
           flexDirection: "column",
           alignItems: "center",
           backgroundColor: "#96E9FF",
-          borderRadius: 2,
+          borderTopLeftRadius: 4, 
+          borderTopRightRadius: 4, 
+          borderBottomLeftRadius: 0, 
+          borderBottomRightRadius: 0,
           padding: 1,
           my: 2,
           mb: 0,
@@ -156,9 +171,9 @@ export default function TicketConfirmationPage() {
             }}
           >
             <Image
-              src="/sitilink.png"
+              src="/sitilink.svg"
               alt="Sitilink Logo"
-              width={60}
+              width={50}
               height={60}
               className="scl"
               style={{ objectFit: "contain", scale: 1.5 }}
@@ -237,7 +252,7 @@ export default function TicketConfirmationPage() {
         <Box sx={{ borderBottom: "1px dashed #e0e0e0", my: 1 }} />
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Typography sx={{ fontSize: "0.775rem" }}>Order ID: {ticketId}</Typography>
-          <IconButton onClick={() => { navigator.clipboard.writeText(ticketId); alert("Order ID copied!"); }} sx={{ ml: 1 }}>
+          <IconButton onClick={() => { navigator.clipboard.writeText(ticketId);}} sx={{ ml: 1 }}>
             <Typography sx={{ fontSize: "0.65rem" }}>Copy</Typography>
           </IconButton>
         </Box>

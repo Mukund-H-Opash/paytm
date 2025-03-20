@@ -121,8 +121,8 @@ const QRTickets =() =>{
         <IconButton onClick={() => router.push("/ticket-confirmation")} sx={{ color: "#000000" }}>
           <ArrowBackIcon />
         </IconButton>
-        <Image src="/scan-pay.png" alt="Logo" height={24} width={24} />
-        <Typography variant="h6" sx={{ fontSize: "1rem" }}>
+        <Image src="/scan-pay-1.png" alt="Logo" height={45} width={45} />
+        <Typography variant="h6" sx={{ fontSize: "1rem" , fontWeight: "bold" }}>
           {passengers} QR Ticket{passengers > 1 ? "s" : ""}
         </Typography>
         <Button sx={{ color: "#0288d1", textTransform: "none" }}>Help</Button>

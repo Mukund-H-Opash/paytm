@@ -13,6 +13,14 @@ p {
 .scl {
   scale: 1.5;
 }
+.search-icon{
+  margin-left: 10px;
+}
+
+.scl1-5 {
+  scale: 2;
+}
+
 
 .mary {
   margin-left: 3px;

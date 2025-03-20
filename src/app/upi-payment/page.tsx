@@ -132,7 +132,7 @@ export default function UPIPaymentPage() {
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2, p: 2 }}>
         <Typography variant="h6" sx={{ fontSize: "1rem", fontWeight: "500" }}>SBI Bank</Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Image src="/upi-logo.png" alt="UPI Logo" width={60} height={30} className="scl" />
+          <Image src="/upi-logo.svg" alt="UPI Logo" width={60} height={30} className="scl1-5" />
         </Box>
       </Box>
       <Box sx={{ backgroundColor: "#F5F5F5", p: 1, mb: 4 }}>
@@ -148,7 +148,7 @@ export default function UPIPaymentPage() {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ flex: 1, p: 1.5 }}>
+      <Box sx={{ flex: 1, p: 1.5, pb: 0 }}>
         <Typography sx={{ fontSize: "0.9rem", fontWeight: "500", mb: 2, textAlign: "center" }}>
           ENTER 6-DIGIT UPI PIN
         </Typography>
@@ -187,7 +187,7 @@ export default function UPIPaymentPage() {
           </Typography>
         </Box>
       </Box>
-      <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, mt: 3 }}>
+      <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, mt: 1 }}>
         {["1", "2", "3", "4", "5", "6", "7", "8", "9"].map((num) => (
           <Button
             key={num}

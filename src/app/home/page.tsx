@@ -35,7 +35,10 @@ export default function HomePage() {
         sx={{
           backgroundColor: "#022A72",
           padding: { xs: 1, sm: 2 },
-          borderRadius: 1,
+          borderTopLeftRadius: 0,
+          borderTopRightRadius: 0,
+          borderBottomLeftRadius:"5px",
+          borderBottomRightRadius: "5px",
           mb: 2,
           display: "flex",
           flexDirection: "row",
@@ -78,10 +81,10 @@ export default function HomePage() {
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1, scale: 1 }}>
           <SearchIcon
-            sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }}
+            sx={{ color: "white", fontSize: { xs: 20, sm: 24,scale: 1.4 } }}
             onClick={handleSearchClick}
           />
-          <NotificationsIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 } }} />
+          <NotificationsIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 ,scale: 1.4} }} />
         </Box>
       </Box>
 
@@ -98,7 +101,7 @@ export default function HomePage() {
         }}
       >
         <Typography sx={{ fontSize: { xs: "0.9rem", sm: "1rem" } }}>
-          UPI ID: 9978073872@paytm
+          UPI ID: 9978073873@paytm
         </Typography>
       </Box>
 
