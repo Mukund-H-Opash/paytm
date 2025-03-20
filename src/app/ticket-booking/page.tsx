@@ -60,7 +60,7 @@ export default function TicketBookingPage() {
         {
           from: "Adajan Gam",
           to: "Sanjeev ku... ",
-          via: "Via Adajan Gam Brts",
+          via: " ",
           price: 4 * passengers, // Update to reflect passengers
           passengers: 1,
           issuedAt: new Date().toISOString(),
@@ -152,7 +152,7 @@ export default function TicketBookingPage() {
     dispatch(setFrom(order.from));
     dispatch(setTo(order.to));
     dispatch(setPassengers(order.passengers));
-    dispatch(setPrice(order.price / order.passengers)); // Set base price in Redux
+    dispatch(setPrice(order.price / order.passengers)); 
     router.push(`/payment?from=${order.from}&to=${order.to}&price=${order.price}&passengers=${order.passengers}`);
   };
 
@@ -320,7 +320,7 @@ export default function TicketBookingPage() {
                 <Typography sx={{ fontSize: "1rem" }}>
                   {order.from} <ArrowForwardIcon sx={{ fontSize: "16px" }} /> {order.to}
                 </Typography>
-                <Typography sx={{ fontSize: "0.75rem", color: "#757575" }}>{order.via}</Typography>
+                <Typography sx={{ fontSize: "0.75rem", color: "#757575" }}></Typography>
               </Box>
               <Button
                 variant="outlined"
