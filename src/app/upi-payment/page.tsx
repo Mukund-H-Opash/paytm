@@ -128,11 +128,11 @@ export default function UPIPaymentPage() {
   }
 
   return (
-    <Box sx={{ p: 0, m: 0 }}>
+    <Box sx={{ p: 0, m: 0, mb:0 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2, p: 2 }}>
         <Typography variant="h6" sx={{ fontSize: "1rem", fontWeight: "500" }}>SBI Bank</Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Image src="/upi-logo.svg" alt="UPI Logo" width={60} height={30} className="scl1-5" />
+          <Image src="/upi-logo.svg" alt="UPI Logo" width={30} height={30} className="scl1-5" />
         </Box>
       </Box>
       <Box sx={{ backgroundColor: "#F5F5F5", p: 1, mb: 4 }}>
@@ -148,7 +148,7 @@ export default function UPIPaymentPage() {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ flex: 1, p: 1.5, pb: 0 }}>
+      <Box sx={{ flex: 1, p: 1.5, pb: 4 }}>
         <Typography sx={{ fontSize: "0.9rem", fontWeight: "500", mb: 2, textAlign: "center" }}>
           ENTER 6-DIGIT UPI PIN
         </Typography>

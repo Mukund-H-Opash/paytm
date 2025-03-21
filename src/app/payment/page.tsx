@@ -96,7 +96,7 @@ export default function PaymentPage() {
             padding: 2,
             border: "1px solid #e0e0e0",
             borderRadius: 2,
-            mb: 1,
+            mb: 2,
             backgroundColor: "#e3f2fd",
           }}
         >
@@ -124,7 +124,7 @@ export default function PaymentPage() {
             padding: 2,
             border: "1px solid #e0e0e0",
             borderRadius: 2,
-            mb: 1,
+            mb: 2,
           }}
         >
           <Image
@@ -151,7 +151,7 @@ export default function PaymentPage() {
               alignItems: "center",
               border: "1px solid #e0e0e0",
               borderRadius: 2,
-              mb: 1,
+              mb: 2,
             }}
           >
             <Box> <Image src={card.src} alt="card" width={30} height={20} className="padir-10 "  /></Box>
@@ -189,7 +189,7 @@ export default function PaymentPage() {
               padding: 2,
               border: "1px solid #e0e0e0",
               borderRadius: 2,
-              mb: 1,
+              mb: 2,
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -231,7 +231,7 @@ export default function PaymentPage() {
               padding: 2,paddingBottom  : 0,
               border: "1px solid #e0e0e0",
               borderRadius: 2,
-              mb: 0,
+              mb: 2,
             }}
           >
             <Box sx={{ display: "flex", alignItems: "center" }}>

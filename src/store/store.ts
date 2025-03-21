@@ -1,7 +1,6 @@
 import { configureStore, Middleware } from '@reduxjs/toolkit';
 import loadingReducer from './loadingSlice';
 import clickReducer from './clickSlice';
-
 import searchReducer from './searchSlice';
 import ticketReducer from './ticketSlice';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
@@ -24,7 +23,7 @@ const loadState = () => {
       return JSON.parse(serializedState);
     }
   }
-  return undefined; // Fallback to initialState in ticketSlice
+  return undefined; 
 };
 
 export const store = configureStore({
