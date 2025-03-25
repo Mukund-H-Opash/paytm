@@ -62,7 +62,7 @@ export default function HomePage() {
               padding: 0,
             }}
           >
-            MH
+            PS
           </Box>
           <Button
             variant="contained"

@@ -58,8 +58,8 @@ const SelectStopPage = () => {
       "Shyam Nagar BRTS",
       "Kamrej Terminal BRTS",
       // Route 12
-      "'Y' Junction Dumas Road BRTS",
-      "'Y' Junction Udhana Magdalla Road BRTS",
+      "Y Junction Dumas Road BRTS",
+      "Y Junction Udhana Magdalla Road BRTS",
       "Maharana Pratap Junction BRTS",
       "S.D. Jain School BRTS",
       "J.H. Ambani School BRTS",
@@ -257,8 +257,8 @@ const SelectStopPage = () => {
   ];
 
   const route12 = [
-    "'Y' Junction Dumas Road BRTS",
-    "'Y' Junction Udhana Magdalla Road BRTS",
+    "Y Junction Dumas Road BRTS",
+    "Y Junction Udhana Magdalla Road BRTS",
     "Maharana Pratap Junction BRTS",
     "S.D. Jain School BRTS",
     "J.H. Ambani School BRTS",
@@ -446,6 +446,7 @@ const SelectStopPage = () => {
     "Dr. Shyamaprasad Mukharji Bridge BRTS",
   ];
 
+  
   // All routes for price calculation
   const routes = [
     { name: "Route 17", stops: route17 },
@@ -559,10 +560,10 @@ const SelectStopPage = () => {
           calculatedPrice = mainFare * 0.8; // Apply 20% discount
         }
       } else {
-        // Inter-route travel: Use "Sarthana Nature Park" as the connecting stop
+        
         const connectingStop = "Sarthana Nature Park";
-        const fromRoute = fromRoutes[0]; // Choose the first route containing "fromStop"
-        const toRoute = toRoutes[0]; // Choose the first route containing "toStop"
+        const fromRoute = fromRoutes[0]; 
+        const toRoute = toRoutes[0]; 
 
         let totalMainFare = 0;
 
