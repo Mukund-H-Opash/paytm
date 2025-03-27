@@ -2,17 +2,25 @@
 
 import { Box, Typography, Button, Grid } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch ,useSelector } from "react-redux";
 import { setOrderId } from "../../store/ticketSlice";
+import { setLoading } from "../../store/loadingSlice";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import Image from "next/image";
-import "../../app/globals.css"; // Import global.css
+import "../../app/globals.css"; 
+import { RootState } from "../../store/store";
+import Loader from "../components/Loader";
 
 export default function HomePage() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const isLoading = useSelector((state: RootState) => state.loading.isLoading);
+
+  const getRandomDelay = () => {
+    return Math.floor(Math.random() * 4000) + 1000; // 1000ms to 5000ms
+  };
 
   const generateRandomOrderId = (length: number): string => {
     return Math.floor(Math.random() * 9e10 + 1e10).toString().slice(0, length);
@@ -24,9 +32,19 @@ export default function HomePage() {
     router.push("/search");
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = async () => {
+    dispatch(setLoading(true));
+    const delay = getRandomDelay();
+    await new Promise((resolve) => setTimeout(resolve, delay));
     router.push("/search");
+    dispatch(setLoading(false));
   };
+
+
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <Box sx={{ backgroundColor: "#ffffff", fontFamily: "Arial, sans-serif" }}>
@@ -511,7 +529,7 @@ export default function HomePage() {
                 color: "#022A72",
                 "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
                 padding: 0,
-              }}
+              }} onClick={handleSearchClick}
             >
               <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
                 <Image
@@ -592,7 +610,7 @@ export default function HomePage() {
                 color: "#022A72",
                 "&:hover": { backgroundColor: "rgba(2, 42, 114, 0.1)" },
                 padding: 0,
-              }}
+              }} onClick={handleSearchClick}
             >
               <Box sx={{ color: "#022A72", borderRadius: "10%", p: 1, mb: 0 }}>
                 <Image
