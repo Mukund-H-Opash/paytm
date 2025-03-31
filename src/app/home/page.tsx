@@ -51,7 +51,7 @@ export default function HomePage() {
       {/* Header Section */}
       <Box
         sx={{
-          backgroundColor: "#022A72",
+          backgroundColor: "#AADDFC",
           padding: { xs: 1, sm: 2 },
           borderTopLeftRadius: 0,
           borderTopRightRadius: 0,
@@ -82,27 +82,20 @@ export default function HomePage() {
           >
             PS
           </Box>
-          <Button
-            variant="contained"
-            sx={{
-              background: "linear-gradient(90deg, #f3f3f3, #f3f3f3)",
-              border: `2px solid #9DAE6C`,
-              color: "#000",
-              fontSize: { xs: "0.8rem", sm: "1rem" },
-              textTransform: "none",
-              borderRadius: "50px",
-              padding: { xs: "6px 12px", sm: "8px 16px" },
-            }}
-          >
-            Create New UPI ID
-          </Button>
+          <Image
+            src="/paytm-home-logo-1.svg"
+            alt="Paytm Logo"  
+            width={120}
+            height={40}
+            className="paytm-logo"
+          />
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1, scale: 1 }}>
           <SearchIcon
-            sx={{ color: "white", fontSize: { xs: 20, sm: 24,scale: 1.4 } }}
+            sx={{ color: "#20336B", fontSize: { xs: 20, sm: 24, scale: 1.4 } }}
             onClick={handleSearchClick}
           />
-          <NotificationsIcon sx={{ color: "white", fontSize: { xs: 20, sm: 24 ,scale: 1.4} }} />
+          <NotificationsIcon sx={{ color: "#20336B", fontSize: { xs: 20, sm: 24 ,scale: 1.4} }} />
         </Box>
       </Box>
 
