@@ -789,6 +789,7 @@ export default function HomePage() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            color: "#fff",
           }}
         >
           <Image
